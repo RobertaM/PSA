@@ -1,0 +1,209 @@
+/* =Typography
+-----------------------------------------------------------------------------*/
+body {
+    font-family: "PT Sans", "PT Sans1";
+}
+
+/* =Links
+-----------------------------------------------------------------------------*/
+
+
+/* =Layout
+-----------------------------------------------------------------------------*/
+#top-bar-wrapper, #page{
+    width: 940px;
+    margin: 0px auto;
+}
+@font-face {
+    font-family: 'PT Sans';
+    font-style: normal;
+    font-weight: 400;
+    src: local('PT Sans'), local('PTSans-Regular'), url(http://themes.googleusercontent.com/static/fonts/ptsans/v4/LKf8nhXsWg5ybwEGXk8UBQ.woff) format('woff');
+}
+@font-face {
+    font-family: 'PT Sans1';
+    font-style: normal;
+    font-weight: 400;
+    src: local('PT Sans'), local('PTSans-Regular'), url(http://lem.hostfree.lt/pt_sans.woff) format('woff');
+}
+/* =Header
+-----------------------------------------------------------------------------*/
+#top-bar{
+    z-index: 2;
+    background-color: #e8e8e8;
+    box-shadow: 0px 1px 3px #bbb;
+}
+#top-bar, #top-bar-wrapper, .top-menu-item{
+    height: 42px;
+}
+#top-bar-wrapper .top-menu-item{
+    min-width: 50px;
+    text-align: center;
+    display: block;
+    text-decoration: none;
+    line-height: 4em;
+    padding: 0px 5px 0px 5px;
+    color: #3b3b3b;
+}
+#top-bar-wrapper .top-menu-item:hover{
+    background-color: #ddd;
+}
+/* =Nav
+-----------------------------------------------------------------------------*/
+#breadcrumb{
+    height: 42px;
+    line-height: 4em;
+}
+#breadcrumb a{
+    text-decoration: none;
+}
+#side-menu{
+    list-style: none;
+    margin: 1.5em 0 0 0;
+}
+#side-menu li a{
+    display: block;
+    cursor: pointer;
+    height: 1.7em;
+    margin-top: 0.5em;
+}
+/* =Misc
+-----------------------------------------------------------------------------*/
+.left{
+    float: left;
+}
+.right{
+    float: right;
+}
+.line-sep-bottom{
+    border-bottom: solid 1px #e8e8e8;
+    /*margin-bottom: 0.5em;*/
+}
+/* multicolumn */
+ul.multicolumn{
+    list-style: none;
+}
+ul.multicolumn li{
+    float: left;
+    margin: 0px 5px 0px 5px;
+}
+/* remove list style */
+.blank-list-style{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.make-some-space{
+    margin-bottom: 1.5em;
+}
+.make-little-space{
+    margin-bottom: 0.5em;
+}
+.marg-auto{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.text-center{
+    text-align: center
+}
+.block-center{
+    margin-left: auto;
+    margin-right: auto;
+}
+.header-link{
+    color: #3b3b3b;
+    text-decoration: none;
+}
+#ajax-more-gall-click{
+    background-color: #fafafa;
+    border: 1px solid #eee;
+    padding: 10px 15px 10px 15px;
+    cursor: pointer;
+}
+.input-checkbox{
+    /*margin-top: 5px;*/
+    margin-right: 5px;
+    line-height: 3em;
+}
+.textarea-text{
+    max-width: 100%;
+    min-width: 100%;
+    min-height: 100px;
+}
+.textarea-title{
+    max-width: 100%;
+    min-width: 70%;
+}
+.unpublished{
+    color: #cc0033;
+}
+.decoration-hover{
+    text-decoration: none;
+}
+.decoration-hover:hover{
+    text-decoration: underline;
+}
+.edit-checkbox, input-checkbox {
+    margin: 5px 5px 0 5px;
+}
+
+/* =body
+-----------------------------------------------------------------------------*/
+.gall-preview-img{
+    /*float: left;*/
+    display: block;
+    margin: 0.5% auto auto;
+    padding-bottom:  0.5%;
+    width: 99%;
+    height: 99%;
+}
+.gall-preview-hover{
+    min-height: 40px;
+    /*width: 98%;*/
+    overflow: hidden;
+    border: 1px solid #eee;
+}
+.gall-preview-info{
+    color: #777;
+}
+.gall-preview-desc{
+    text-align: justify;
+}
+.gall-img-preview-desc {
+    text-align: justify;
+    margin: 0.1em 0.5em 0.1em 0.5em;
+    padding: 0;
+}
+#user-gallery-list{
+    margin-left: 1em;
+}
+.login-input-size{
+    width: 15em;
+}
+.input-error-message{
+    display: block;
+    margin-left: 0.5em;
+}
+#ajax-more-gall-load{
+    display: none;
+}
+#editor-toolbar-right{
+    margin-right: 0.5em;
+}
+#editor-toolbar{
+    background-color: rgba(255, 223, 0, 0.3);
+    height: 1.5em;
+}
+/* =Footer
+-----------------------------------------------------------------------------*/
+#footer-sep{
+    min-height: 20px;
+    border-bottom: solid 1px #e8e8e8;
+}
+footer{
+    color:#c8c8c8;
+    text-align: right;
+    font-size: 10px;
+    margin-bottom: 20em;
+}

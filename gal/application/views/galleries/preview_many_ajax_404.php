@@ -1,0 +1,1 @@
+<h3>No more galleries found</h3>
