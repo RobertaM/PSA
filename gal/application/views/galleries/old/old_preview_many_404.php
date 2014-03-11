@@ -1,1 +1,0 @@
-<h3>No galleries found</h3>

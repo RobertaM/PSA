@@ -1,0 +1,8 @@
+eclipse.preferences.version=1
+include_path=0;/PSA website
+org.eclipse.php.core.phpForamtterArrayInitSize=1
+org.eclipse.php.core.phpForamtterIndentationSize=4
+org.eclipse.php.core.phpForamtterIndentationWrappedLineSize=1
+org.eclipse.php.core.phpForamtterUseTabs=false
+phpVersion=php5.4
+useShortTags=true
