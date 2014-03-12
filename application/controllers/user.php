@@ -97,7 +97,7 @@ class User extends CI_Controller {
 
         $this->load->view('static/header', Array('title' => 'User ' . $username));
 
-        $this->load->view('user/view/one', Array(
+        $this->load->view('user/view/view_one', Array(
             'user' => Array(
                 'nickname' => $username
             )
