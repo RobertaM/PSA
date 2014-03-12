@@ -36,29 +36,31 @@
             	<header>
             		<div id="top-bar">
             			<div id="top-bar-wrapper">
-            				<a href="<?php echo base_url() ?>" class="left top-menu-item">Home</a>
+            			
+            				<a href="<?php echo base_url() ?>" 
+            				    class="left top-menu-item">Home</a>
+            			
             				<?php
             				if ($this->User_model->is_logged_in()) {
             				    ?>
-            				<a
-            					href="<?php echo base_url('user/logout');
-                                    ?>"
-            					class="right top-menu-item">Log out</a> <a
-            					href="<?php
-                                    echo base_url('user/view/' .
-                                            $this->session->userdata('nickname'));
-                                    ?>"
-            					class="right top-menu-item">View profile</a>
-            				<?php
-            				} else {
+            			
+            				<a href="<?php echo base_url('user/logout'); ?>"
+            					class="right top-menu-item">Log out</a>
+            					
+            				<a href="<?php echo base_url('user/view/' .
+                                    $this->session->userdata('nickname')); ?>"
+            				    class="right top-menu-item">View profile</a>
+            				
+            				<?php 
+            				} else { 
             				    ?>
-            				<a
-            					href="<?php echo base_url('user/register');
-                                       ?>"
-            					class="right top-menu-item">Register</a> <a
-            					href="<?php echo base_url('user/login');
-                                       ?>"
-            					class="right top-menu-item">Log in</a>
+            				
+                            <a href="<?php echo base_url('user/register'); ?>" 
+                                class="right top-menu-item">Register</a>
+            				
+            				<a href="<?php echo base_url('user/login'); ?>"
+                                class="right top-menu-item">Log in</a>
+                                
             				<?php
             				}
             				?>
