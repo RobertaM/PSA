@@ -1,3 +1,9 @@
+<html>
+<head>
+<title>My Form</title>
+</head>
+<body>
+
 
 <h3>Log in</h3>
 <div class="fourfifth right">
@@ -23,3 +29,9 @@
     form_close();
     ?>
 </div>
+
+
+</form>
+
+</body>
+</html>

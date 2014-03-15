@@ -110,7 +110,7 @@ class User extends CI_Controller {
      * TODO: implement
      */
     public function register(){
-        echo "Registration will be added later";
+        $this->load->view('reg/register');
     }
 
 }
