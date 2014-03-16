@@ -110,7 +110,11 @@ class User extends CI_Controller {
      * TODO: implement
      */
     public function register(){
-        $this->load->view('reg/register');
+        $this->load->helper('form');
+        $this->load->library('form_validation');
+        $this->load->view('static/header');
+        $this->load->view('user/reg/r');
+        $this->load->view('static/footer');
     }
 
 }
