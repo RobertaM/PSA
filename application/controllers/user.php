@@ -8,7 +8,6 @@ class User extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
-        $this->load->model(Array('User_model'));
     }
 
     public function index() {
@@ -25,7 +24,7 @@ class User extends CI_Controller {
         // User is already logged in?
         if (!$this->session->userdata('user_logged_in_status') === FALSE) {
             // Redirect
-            $this->load->helper('url');
+            //             $this->load->helper('url');
             redirect(base_url('user/view/' . $this->session->userdata('nickname')));
             return;
         }
@@ -48,8 +47,9 @@ class User extends CI_Controller {
             $this->load->view('static/header', Array('title' => 'Log in'));
             $this->load->view('user/login/form');
         } else {
-            // Pperform password check
-            if ($response = $this->User_model->check_password($this->input->post(null, TRUE))) {
+            // Perform password check
+            $response = $this->User_model->check_password($this->input->post(null, TRUE));
+            if ($response['status'] === TRUE) {
                 $this->User_model->set_logged_in($response['userdata']);
                 $this->load->helper('url');
                 redirect(base_url('user/view/' . $this->session->userdata('username')));
