@@ -3,12 +3,12 @@
  * Please do not align this code automatically
  */
     $this->output->enable_profiler();
-    $this->load->model('User_model');
 ?>
 <!DOCTYPE html>
     <html>
         <head>
             <title><?php
+                // This variable is used for setting the page title dynamically
                 echo $title;
             ?>
             </title>
@@ -31,47 +31,47 @@
                     <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
                     <![endif]-->
             
-            </head>
-            <body>
-            	<header>
-            		<div id="top-bar">
-            			<div id="top-bar-wrapper">
-            			
-            				<a href="<?php echo base_url() ?>" 
-            				    class="left top-menu-item">Home</a>
-            			
-            				<?php
-            				if ($this->User_model->is_logged_in()) {
-            				    ?>
-            			
-            				<a href="<?php echo base_url('user/logout'); ?>"
-            					class="right top-menu-item">Log out</a>
-            					
-            				<a href="<?php echo base_url('user/view/' .
-                                    $this->session->userdata('nickname')); ?>"
-            				    class="right top-menu-item">View profile</a>
-            				
-            				<?php 
-            				} else { 
-            				    ?>
-            				
-                            <a href="<?php echo base_url('user/register'); ?>" 
-                                class="right top-menu-item">Register</a>
-            				
-            				<a href="<?php echo base_url('user/login'); ?>"
-                                class="right top-menu-item">Log in</a>
-                                
-            				<?php
-            				}
-            				?>
-            			</div>
-            		</div>
-            	</header>
-            
-            	<div id="page">
-            		<div class="fourfifth" id="main-content">
-            
-            			<div id="breadcrumb" class="line-sep-bottom">
-            				<?php echo set_breadcrumb();
-            				?>
-            			</div>
+        </head>
+        <body>
+        	<header>
+        		<div id="top-bar">
+        			<div id="top-bar-wrapper">
+        			
+        				<a href="<?php echo base_url() ?>" 
+        				    class="left top-menu-item">Home</a>
+        			
+        				<?php
+        				if ($this->User_model->is_logged_in()) {
+        				    ?>
+        			
+        				<a href="<?php echo base_url('user/logout'); ?>"
+        					class="right top-menu-item">Log out</a>
+        					
+        				<a href="<?php echo base_url('user/view/' .
+                                $this->session->userdata('nickname')); ?>"
+        				    class="right top-menu-item">View profile</a>
+        				
+        				<?php 
+        				} else { 
+        				    ?>
+        				
+                        <a href="<?php echo base_url('user/register'); ?>" 
+                            class="right top-menu-item">Register</a>
+        				
+        				<a href="<?php echo base_url('user/login'); ?>"
+                            class="right top-menu-item">Log in</a>
+                            
+        				<?php
+        				}
+        				?>
+        			</div>
+        		</div>
+        	</header>
+        
+        	<div id="page">
+        		<div class="fourfifth" id="main-content">
+        
+        			<div id="breadcrumb" class="line-sep-bottom">
+        				<?php echo set_breadcrumb();
+        				?>
+        			</div>
