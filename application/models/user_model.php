@@ -13,6 +13,15 @@ class User_model extends CI_Model {
      * @param Array $data must contain username and password.
      * @return Array of boolean 'status' and user data from database.
      */
+
+    public function __construct(){
+        $this->load->database();
+    }
+
+    public function set_user(){
+        
+        
+    }
     public function check_password($data = FALSE) {
 
         if (isset($data)) {

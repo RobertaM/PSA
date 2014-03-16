@@ -343,7 +343,8 @@ class CI_Loader {
 		$CI->db = '';
 
 		// Load the DB class
-		$CI->db =& DB($params, $active_record);
+		//$db['default']['pconnect'] = TRUE;
+		//$CI->db =& DB($params, $active_record);
 	}
 
 	// --------------------------------------------------------------------
