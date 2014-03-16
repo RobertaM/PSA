@@ -113,7 +113,7 @@ class User extends CI_Controller {
         $this->load->helper('form');
         $this->load->library('form_validation');
         $this->load->view('static/header');
-        $this->load->view('user/reg/r');
+        $this->load->view('user/register/register_form');
         $this->load->view('static/footer');
     }
 
