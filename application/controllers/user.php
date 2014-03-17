@@ -112,9 +112,34 @@ class User extends CI_Controller {
     public function register(){
         $this->load->helper('form');
         $this->load->library('form_validation');
+
+        $this->form_validation->set_rules('username', 'username', 'required');
+        $this->form_validation->set_rules('password', 'password', 'required');
+        $this->form_validation->set_rules('name', 'name', 'required');
+        $this->form_validation->set_rules('surname', 'surname', 'required');
+        $this->form_validation->set_rules('phone_number', 'phone_number', 'required');
+        $this->form_validation->set_rules('passconf', 'passconf', 'required');
+        
+                
+        $this->form_validation->set_rules('username', 'username', 'trim|required|min_length[4]');
+        $this->form_validation->set_rules('password', 'password', 'trim|required|min_length[4]|max_length[32]');
+        $this->form_validation->set_rules('passconf', 'passconf', 'trim|required|matches[password]');
+        $this->form_validation->set_rules('phone_number', 'phone_number', 'trim|required|min_length[9]');
+
         $this->load->view('static/header');
         $this->load->view('user/register/register_form');
+        //$this->load->view('user/register/success');
         $this->load->view('static/footer');
+
+        if ($this->form_validation->run() === FALSE){
+            echo "omg wtf happening";
+        } else {
+
+            $this->User_model->set_user();
+
+        }
+        
+        
     }
 
 }

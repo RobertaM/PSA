@@ -4,7 +4,13 @@
 </head>
 <body>
 
-<?php echo form_open('form'); ?>
+<?php echo form_open('user/register'); ?>
+
+<h5>Name</h5>
+<input type="text" name="name" value="" size="50" />
+
+<h5>Surname</h5>
+<input type="text" name="surname" value="" size="50" />
 
 <h5>Username</h5>
 <input type="text" name="username" value="" size="50" />
@@ -15,10 +21,10 @@
 <h5>Password Confirm</h5>
 <input type="text" name="passconf" value="" size="50" />
 
-<h5>Email Address</h5>
-<input type="text" name="email" value="" size="50" />
-
-<div><input type="submit" value="Submit" /></div>
+<h5>Phone Number</h5>
+<input type="text" name="phone_number" value="" size="50" />
+<div> </div>
+<div><input type="submit" value="Submit" class="btn" /></div>
 
 
 </body>

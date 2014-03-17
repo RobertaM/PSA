@@ -19,7 +19,14 @@ class User_model extends CI_Model {
     }
 
     public function set_user(){
-        
+        $user = array(
+                'name' => $this->input->post('name'),
+                'surname' => $this->input->post('surname'),
+                'username' => $this->input->post('username'),
+                'password' => $this->input->post('password'),
+                'phone_number' => $this->input->post('phone_number')
+                );
+        return $this->db->insert('USER', $user);
         
     }
     public function check_password($data = FALSE) {
