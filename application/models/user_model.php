@@ -27,8 +27,8 @@ class User_model extends CI_Model {
                 'phone_number' => $this->input->post('phone_number')
                 );
         return $this->db->insert('USER', $user);
-        
     }
+
     public function check_password($data = FALSE) {
 
         if (isset($data)) {

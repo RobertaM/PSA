@@ -105,6 +105,42 @@ class User extends CI_Controller {
         $this->load->view('static/footer');
     }
 
+    public function view_profile($username = NULL) {
+
+        // Check for user eligibility
+        if(!$this->User_model->is_logged_in()){
+            show_404(NULL, FALSE);
+            return;
+        }
+
+        // View self or another user
+        if(!isset($username)){
+            $username = $this->session->userdata('user_data');
+            $username = $username['username'];
+            $name = $this->session->userdata('user_data');
+            $name = $name['name'];
+            $surname = $this->session->userdata('user_data');
+            $surname = $surname['surname'];
+            $phone_number = $this->session->userdata('user_data');
+            $phone_number = $phone_number['phone_number'];
+        }
+
+        $this->load->view('static/header', Array('title' => 'User ' . $username));
+
+        $this->load->view('user/view/view_profile', Array(
+            'user' => Array(
+                'nickname' => $username,
+                'name' => $name,
+                'surname' => $surname,
+                'phone_number' => $phone_number
+            )
+        ));
+        $this->load->view('static/footer');
+    }
+
+
+
+
     /**
      * Register method placeholder
      * TODO: implement
@@ -128,7 +164,6 @@ class User extends CI_Controller {
 
         $this->load->view('static/header');
         $this->load->view('user/register/register_form');
-        //$this->load->view('user/register/success');
         $this->load->view('static/footer');
 
         if ($this->form_validation->run() === FALSE){
