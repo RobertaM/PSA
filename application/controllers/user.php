@@ -137,10 +137,6 @@ class User extends CI_Controller {
         ));
         $this->load->view('static/footer');
     }
-
-
-
-
     /**
      * Register method placeholder
      * TODO: implement

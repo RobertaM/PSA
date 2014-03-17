@@ -2,10 +2,10 @@
 
 $this->load->helper('form');
 
-echo form_open(base_url("places/select"));
+echo form_open(base_url("products/select"));
 
 // Print all places
-foreach ($places as $place) { ?>
+foreach ($products as $p) { ?>
 
 <div class="place-item">
 	<h5 class="place-item-title">
@@ -13,12 +13,12 @@ foreach ($places as $place) { ?>
 		echo form_label(
 		    form_checkbox(
 		        Array(
-		            "name" => $place['place_id'],
+		            "name" => $p['product_id'],
 		            "class" => "place-item-checkbox",
-		            "value" => $place['place_id'],
-		            "checked" => $place['checked']
+		            "value" => $p['product_id']
+		            //"checked" => $products['checked']
 		        )
-		    ) . $place['name']
+		    ) . $p['product_name']
 		); ?>
 	</h5>
 </div>

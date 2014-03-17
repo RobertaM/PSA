@@ -47,10 +47,15 @@
         				<a href="<?php echo base_url('user/logout'); ?>"
         					class="right top-menu-item">Log out</a>
         					
-        				<a href="<?php echo base_url('user/view/' .
+        				<a href="<?php echo base_url('user/view_profile/' .
                                 $this->session->userdata('nickname')); ?>"
         				    class="right top-menu-item">View profile</a>
         				
+                        <a href="<?php echo base_url('places/select/' .
+                                $this->session->userdata('nickname')); ?>"
+                            class="right top-menu-item">Choose a restaurant</a>
+                        
+
         				<?php 
         				} else { 
         				    ?>
