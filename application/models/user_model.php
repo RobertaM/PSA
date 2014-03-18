@@ -20,12 +20,12 @@ class User_model extends CI_Model {
 
     public function set_user(){
         $user = array(
-                'name' => $this->input->post('name'),
-                'surname' => $this->input->post('surname'),
-                'username' => $this->input->post('username'),
-                'password' => $this->input->post('password'),
-                'phone_number' => $this->input->post('phone_number')
-                );
+            'name' => $this->input->post('name'),
+            'surname' => $this->input->post('surname'),
+            'username' => $this->input->post('username'),
+            'password' => $this->input->post('password'),
+            'phone_number' => $this->input->post('phone_number')
+        );
         return $this->db->insert('USER', $user);
     }
 
@@ -77,6 +77,9 @@ class User_model extends CI_Model {
     public function set_logged_out() {
         $this->session->set_userdata(Array('user_logged_in_status' => FALSE));
         $this->session->unset_userdata(Array('user_data'));
+
+        // TODO TEMP:
+        $this->session->sess_destroy();
     }
 
     /**
