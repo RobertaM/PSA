@@ -22,6 +22,7 @@ foreach ($places as $place) { ?>
 		); ?>
 	</h5>
 </div>
+
 <?php
 }
 
@@ -31,3 +32,7 @@ echo form_submit(Array(
 
 echo form_close();
 ?>
+
+<div class="cart">
+ something
+</div>
