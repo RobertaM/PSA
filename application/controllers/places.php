@@ -67,7 +67,7 @@ class Places extends CI_Controller {
             );
 
             // Redirect
-            redirect(base_url("product/view"), 'refresh');
+            redirect(base_url("products/select"), 'refresh');
         }
     }
 

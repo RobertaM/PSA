@@ -10,11 +10,23 @@ class Products extends CI_Controller {
         // Redirect
         redirect(base_url("products/select"), 'refresh');
     }
-
+    /**
+     * Select products from list and add them to cart.
+     */
     public function select() {
 
         // Get data from database
         $products = $this->Product_model->get_products();
+
+        // Check if products are not returned
+        if($products === FALSE) {
+            $message = "Please select another place.";
+
+            $this->load->view("static/header", Array("title" => $message));
+            $this->load->view("static/show_message", Array("message" => $message));
+            $this->load->view("static/footer");
+            return;
+        }
 
         // Load form library
         $this->load->library("form_validation");
@@ -22,13 +34,6 @@ class Products extends CI_Controller {
 
         // Actual form checking
         if($this->form_validation->run() == FALSE) {
-
-            // Set checkbox states
-            $product_states = $this->Product_model->get_selected_products();
-            foreach ($products as $key => $product)
-                $products[$key]["checked"] =
-                isset($product_states[$product['product_id']]);
-
 
             // Load headers and form itself
             $this->load->view("static/header");
@@ -39,13 +44,13 @@ class Products extends CI_Controller {
 
         } else {
 
-            // Load all the submitted data into session variable
-            $this->Product_model->temporarily_save_selected_products(
-                $this->input->post(null, TRUE)
-            );
+            //             // Load all the submitted data into session variable
+            //             $this->Product_model->temporarily_save_selected_products(
+            //                 $this->input->post(null, TRUE)
+            //             );
 
-            // Redirect
-            redirect(base_url("product/view"), 'refresh');
+            // // Redirect
+            // redirect(base_url("products/select/"), 'refresh');
         }
     }
 
