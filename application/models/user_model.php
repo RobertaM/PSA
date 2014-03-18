@@ -40,14 +40,14 @@ class User_model extends CI_Model {
             $this->db->where('username', $data['username']);
             $response = $this->db->get()->result_array();
 
-            // check password
+            // Check password
             if (!$response === FALSE &&
                 $data['password'] === $response[0]['password']) {
 
-                // remove password field before returning
+                // Remove password field before returning
                 unset($response[0]['password']);
 
-                // return all remaining data, success
+                // Return all remaining data, success
                 return Array('status' => TRUE, 'userdata' => $response[0]);
             }
             // User password is wrong

@@ -8,7 +8,7 @@ class Places extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
-        $this->load->model(Array('Place_model'));
+        $this->load->model('Place_model');
     }
 
     public function index() {
