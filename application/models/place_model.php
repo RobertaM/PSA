@@ -23,11 +23,11 @@ class Place_model extends CI_Model {
     /**
      * Save selected places for temporary storage
      */
-    public function temporarily_save_selected_places($places) {
+    public function temporarily_save_selected_place($place_id) {
 
         // Save data to session
         $this->session->set_userdata(Array(
-            "selected_places" => $places
+            "selected_place" => $place_id
         ));
     }
 

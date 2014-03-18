@@ -9,11 +9,11 @@ foreach ($places as $place) { ?>
 
 <div class="place-item">
 	<h5 class="place-item-title">
-		<?php 
+		<?php
 		echo form_label(
-		    form_checkbox(
+		    form_radio(
 		        Array(
-		            "name" => $place['place_id'],
+		            "name" => "place-radio",
 		            "class" => "place-item-checkbox",
 		            "value" => $place['place_id'],
 		            "checked" => $place['checked']

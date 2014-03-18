@@ -23,7 +23,9 @@ class Places extends CI_Controller {
 
         // Load form library
         $this->load->library("form_validation");
-        $this->form_validation->set_rules("none"); // Don't apply any rules
+
+        // TODO: implement: print error message
+        $this->form_validation->set_rules('place-radio', 'place', 'required');
 
         // Actual form checking
         if($this->form_validation->run() == FALSE) {
@@ -44,9 +46,13 @@ class Places extends CI_Controller {
 
         } else {
 
+            $post_array = $this->input->post(null, TRUE);
+            $selected_button = $post_array["place-radio"];
+            echo $selected_button;
+
             // Load all the submitted data into session variable
-            $this->Place_model->temporarily_save_selected_places(
-                $this->input->post(null, TRUE)
+            $this->Place_model->temporarily_save_selected_place(
+                $selected_button
             );
 
             // Redirect
