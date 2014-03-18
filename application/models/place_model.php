@@ -34,9 +34,9 @@ class Place_model extends CI_Model {
     /**
      * Gets user selected places from session cookie
      */
-    public function get_selected_places() {
-         
-        return $this->session->userdata("selected_places");
+    public function get_selected_place() {
+
+        return $this->session->userdata("selected_place")[0];
     }
 
 }

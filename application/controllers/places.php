@@ -16,6 +16,10 @@ class Places extends CI_Controller {
         redirect(base_url("places/select"), 'refresh');
     }
 
+    /**
+     * Method to select a place. Provides user with a set of radio buttons to
+     * select a place.
+     */
     public function select() {
 
         // Get data from database
@@ -31,14 +35,16 @@ class Places extends CI_Controller {
         if($this->form_validation->run() == FALSE) {
 
             // Set checkbox states
-            $place_states = $this->Place_model->get_selected_places();
-            foreach ($places as $key => $place)
-                $places[$key]["checked"] =
-                isset($place_states[$place['place_id']]);
-
+            $selected_place_id = $this->Place_model->get_selected_place();
+            foreach ($places as $key => $place) {
+                // Set to true if place id equals session place id
+                $places[$key]["checked"] = isset($selected_place_id) && ($place["place_id"] === $selected_place_id);
+            }
 
             // Load headers and form itself
-            $this->load->view("static/header");
+            $this->load->view("static/header", Array(
+                "title" => "Select a place"
+            ));
             $this->load->view("places/list_all",
                 Array('places' => $places)
             );
@@ -46,6 +52,7 @@ class Places extends CI_Controller {
 
         } else {
 
+            // Get selected radio button index from session if it exists
             $post_array = $this->input->post(null, TRUE);
             $selected_button = $post_array["place-radio"];
             echo $selected_button;
