@@ -34,26 +34,37 @@ class Products extends CI_Controller {
 
         // Actual form checking
         if($this->form_validation->run() == FALSE) {
-
+            $message = "Select food";
             // Load headers and form itself
-            $this->load->view("static/header");
+            $this->load->view("static/header", Array("title" => $message));
             $this->load->view("products/list_all_products",
                 Array('products' => $products)
             );
             $this->load->view("static/footer");
 
         } else {
+            $this->load->library("form_validation");
+            $this->form_validation->set_rules("none"); // Don't apply any rules
 
-            //             // Load all the submitted data into session variable
-            //             $this->Product_model->temporarily_save_selected_products(
-            //                 $this->input->post(null, TRUE)
-            //             );
+        // Actual form checking
+            if($this->form_validation->run() == TRUE) {
+            $message = "Adding to cart";
+            
+            $this->load->view("static/header", Array("title" => $message));
+            
+            
+            $this->load->view("products/list_all_products",
+                Array('products' => $products)
+            );
+        
+        
+            
+            $this->load->view("static/footer");
 
-            // // Redirect
-            // redirect(base_url("products/select/"), 'refresh');
         }
     }
 
+}
 }
 
 ?>

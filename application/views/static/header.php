@@ -72,12 +72,14 @@
         			</div>
         		</div>
         	</header>
-
-        	<div id="page">
         
-            <div id="breadcrumb" class="line-sep-bottom">
-                <?php echo set_breadcrumb();
-                ?>
-            </div>
-            
+        	<div id="page">
+                    <div id="breadcrumb" class="line-sep-bottom">
+                        <?php echo set_breadcrumb();
+                        ?>
+                    </div>
+
+                    <div class="make-some-space ">
+
+                    </div>
         		<div class="fourfifth left" id="main-content">

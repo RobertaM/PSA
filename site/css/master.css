@@ -91,6 +91,9 @@ body {
 .right {
 	float: right;
 }
+.center{
+	text-align: center;
+}
 
 .line-sep-bottom {
 	border-bottom: solid 1px #e8e8e8;
@@ -248,6 +251,20 @@ ul.multicolumn li {
 .place-item-title {
 	margin-left: 5%;
 }
+
+.cart {
+    text-align: left; 
+    background-color: #e8e8e8;
+
+}
+
+.cart-text{
+	margin-left: 1em;
+}
+.cart-separator{
+	border-bottom: solid 1px #f8f8f8;
+	margin-bottom: 1em;
+}
 /* =Footer
 -----------------------------------------------------------------------------*/
 #footer-sep {
@@ -261,3 +278,4 @@ footer {
 	font-size: 10px;
 	margin-bottom: 20em;
 }
+

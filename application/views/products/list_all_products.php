@@ -8,15 +8,16 @@ foreach ($products as $p) { ?>
 <div class="place-item">
 	<h5 class="place-item-title">
 		<?php 
+
 		echo form_label(
 		    form_checkbox(
 		        Array(
-		            "name" => $p['item_id'],
+		            "name" => $p['product_id'],
 		            "class" => "place-item-checkbox",
-		            "value" => $p['item_id']
-		            //"checked" => $products['checked']
+		            "value" => $p['product_id']
+		            //"checked" => $p['checked']
 		        )
-		    ) . $p['item_name']
+		    ) . $p['product_name']
 		); ?>
 	</h5>
 </div>

@@ -3,13 +3,29 @@
  * Please do not align this code automatically
  */
 ?>
-       
 
-
+        </div>
+            <div class="fifth left cart">
+            <div class="cart-separator">
+                <div class="center">
+                <h4>CART</h4>
+                </div>
             </div>
+            <?php for ($i=0; $i <5 ; $i++) { 
+            ?>  
+             <div class="cart-text">
+                smth
+                lalalalallalalal
+                lalalallallalla
+                lalalalal
+               <!-- <?php foreach ($products as $p) { ?>
 
-             <div class="onefifth left cart">
-            something
+
+                <?php } ?> -->
+            </div>
+            
+            <?php } ?>
+                <input type="submit" value="Submit" class="btn">
             </div>
             <div id="footer-sep" class="clear"></div>
             
