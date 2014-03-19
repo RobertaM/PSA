@@ -55,7 +55,6 @@ class Places extends CI_Controller {
             // Get selected radio button index from session if it exists
             $post_array = $this->input->post(null, TRUE);
             $selected_button = $post_array["place-radio"];
-            echo $selected_button;
 
             // Load all the submitted data into session variable
             $this->Place_model->temporarily_save_selected_place(

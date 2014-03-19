@@ -44,13 +44,13 @@ class Products extends CI_Controller {
 
         } else {
 
-            //             // Load all the submitted data into session variable
-            //             $this->Product_model->temporarily_save_selected_products(
-            //                 $this->input->post(null, TRUE)
-            //             );
+            // Load all the submitted data into session variable
+            $this->Product_model->temporarily_save_selected_products(
+                $this->input->post(null, TRUE)
+            );
 
-            // // Redirect
-            // redirect(base_url("products/select/"), 'refresh');
+            // Redirect
+            redirect(base_url("products/select/"), 'refresh');
         }
     }
 
