@@ -45,9 +45,13 @@ class Places extends CI_Controller {
             $this->load->view("static/header", Array(
                 "title" => "Select a place"
             ));
+
+            $this->load->view("cart/cart");
+
             $this->load->view("places/list_all",
                 Array('places' => $places)
             );
+            
             $this->load->view("static/footer");
 
         } else {

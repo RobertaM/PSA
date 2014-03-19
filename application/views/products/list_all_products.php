@@ -1,7 +1,5 @@
 <?php 
-
 $this->load->helper('form');
-
 echo form_open(base_url("products/select"));
 
 // Print all products
@@ -22,7 +20,7 @@ foreach ($products as $item) { ?>
 	</h5>
 </div>
 <?php
-}
+}	
 
 echo form_submit(Array(
     "value"=>"Submit"
