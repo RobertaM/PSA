@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 19, 2014 at 07:00 
+-- Generation Time: Mar 19, 2014 at 10:39 
 -- Server version: 5.6.16
 -- PHP Version: 5.5.9
 
@@ -50,18 +50,22 @@ INSERT INTO `categories` (`cat_id`, `cat_name`) VALUES
 CREATE TABLE IF NOT EXISTS `items` (
   `item_id` int(11) NOT NULL AUTO_INCREMENT,
   `cat_id` int(11) DEFAULT NULL,
-  `item_name` varchar(100) DEFAULT NULL,
+  `item_name` varchar(100) CHARACTER SET utf8 COLLATE utf8_lithuanian_ci DEFAULT NULL,
   `item_type` int(11) DEFAULT NULL,
-  PRIMARY KEY (`item_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+  PRIMARY KEY (`item_id`),
+  KEY `item_type` (`item_type`),
+  KEY `cat_id` (`cat_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `items`
 --
 
 INSERT INTO `items` (`item_id`, `cat_id`, `item_name`, `item_type`) VALUES
-(1, 1, 'Margarita', 1),
-(2, 2, 'Salotos su karšta lašiša', 2);
+(1, 1, 'Margarita', NULL),
+(2, 2, 'Salotos su karšta lašiša', NULL),
+(3, 1, 'Mafia', NULL),
+(4, 1, 'Peperoni', NULL);
 
 -- --------------------------------------------------------
 
@@ -99,7 +103,7 @@ CREATE TABLE IF NOT EXISTS `item_options` (
   `price` decimal(6,2) DEFAULT NULL,
   PRIMARY KEY (`option_id`),
   KEY `item_id` (`item_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
 
 --
 -- Dumping data for table `item_options`
@@ -109,7 +113,11 @@ INSERT INTO `item_options` (`option_id`, `item_id`, `option_name`, `price`) VALU
 (1, 1, '30 cm', '8.99'),
 (2, 1, '50 cm', '29.99'),
 (3, 2, 'Maža porcija', '10.99'),
-(5, 2, 'Didelė porcija', '15.00');
+(5, 2, 'Didelė porcija', '15.00'),
+(6, 3, '30 cm', '8.99'),
+(7, 4, '50 cm', '29.99'),
+(8, 3, '50 cm', '29.99'),
+(9, 4, '30 cm', '8.99');
 
 -- --------------------------------------------------------
 
@@ -182,22 +190,24 @@ INSERT INTO `PLACES` (`place_id`, `name`, `description`, `adress`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `PLACE_ITEMS` (
-  `P_I_id` int(11) NOT NULL AUTO_INCREMENT,
+  `place_item_id` int(11) NOT NULL AUTO_INCREMENT,
   `item_id` int(11) NOT NULL,
   `place_id` int(11) NOT NULL,
-  `is_available` tinyint(4) NOT NULL,
-  PRIMARY KEY (`P_I_id`),
+  `is_available` tinyint(1) NOT NULL,
+  PRIMARY KEY (`place_item_id`),
   KEY `item_id` (`item_id`),
   KEY `place_id` (`place_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_lithuanian_ci AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_lithuanian_ci AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `PLACE_ITEMS`
 --
 
-INSERT INTO `PLACE_ITEMS` (`P_I_id`, `item_id`, `place_id`, `is_available`) VALUES
+INSERT INTO `PLACE_ITEMS` (`place_item_id`, `item_id`, `place_id`, `is_available`) VALUES
 (1, 1, 0, 1),
-(2, 2, 1, 1);
+(2, 2, 1, 1),
+(3, 3, 0, 1),
+(4, 4, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -227,6 +237,14 @@ INSERT INTO `USER` (`name`, `surname`, `phone_number`, `user_id`, `role`, `passw
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `items`
+--
+ALTER TABLE `items`
+  ADD CONSTRAINT `items_ibfk_3` FOREIGN KEY (`cat_id`) REFERENCES `categories` (`cat_id`),
+  ADD CONSTRAINT `items_ibfk_1` FOREIGN KEY (`item_type`) REFERENCES `categories` (`cat_id`),
+  ADD CONSTRAINT `items_ibfk_2` FOREIGN KEY (`item_type`) REFERENCES `categories` (`cat_id`);
 
 --
 -- Constraints for table `item_extras`
