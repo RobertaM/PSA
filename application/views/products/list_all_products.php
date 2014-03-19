@@ -13,12 +13,12 @@ foreach ($products as $p) { ?>
 		echo form_label(
 		    form_checkbox(
 		        Array(
-		            "name" => $p['product_id'],
+		            "name" => $p['item_id'],
 		            "class" => "place-item-checkbox",
-		            "value" => $p['product_id']
+		            "value" => $p['item_id']
 		            //"checked" => $products['checked']
 		        )
-		    ) . $p['product_name']
+		    ) . $p['item_name']
 		); ?>
 	</h5>
 </div>
