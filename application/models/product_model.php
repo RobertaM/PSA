@@ -11,15 +11,18 @@ class Product_model extends CI_Model {
         $this->load->model("Place_model");
         $place_id = $this->Place_model->get_selected_place();
 
-        // Goodbye if no place returned
-        //if(!isset($place_id))
-        //    return FALSE;
+     // Goodbye if no place returned
+        if(!isset($place_id))
+            return FALSE;
 
         // Select all data
-        $this->db->select("items.*, PLACES.place_id");
+        $this->db->select("items.*, PLACES.place_id, categories.*,item_options.*");
         $this->db->from("PLACES");
         $this->db->join("PLACE_ITEMS", "PLACE_ITEMS.place_id = PLACES.place_id", "left");
         $this->db->join("items", "items.item_id = PLACE_ITEMS.item_id", "left");
+        $this->db->join("categories", "categories.cat_id = items.cat_id", "left");
+        $this->db->join("item_options", "item_options.item_id = items.item_id", "left");
+        $this->db->order_by('items.item_type asc, item_options.item_id asc'); 
         $this->db->where("PLACES.place_id = " . $place_id);
         $response = $this->db->get()->result_array();
 
