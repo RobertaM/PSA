@@ -23,11 +23,19 @@ class Place_model extends CI_Model {
     /**
      * Save selected places for temporary storage
      */
-    public function temporarily_save_selected_place($place_id) {
+    public function temporarily_save_selected_place($place_data = array()) {
+
+        if (!isset($place_data["name"])) {
+            $place_data["name"] = "Not set";
+        }
+        if (!isset($place_data["id"])) {
+            $place_data["id"] = null;
+        }
 
         // Save data to session
-        $this->session->set_userdata(Array(
-            "selected_place" => $place_id
+        $this->session->set_userdata("place", Array(
+            "id" => $place_data["id"],
+            "name" => $place_data["name"]
         ));
     }
 
@@ -36,7 +44,7 @@ class Place_model extends CI_Model {
      */
     public function get_selected_place() {
 
-        return $this->session->userdata("selected_place")[0];
+        return $this->session->userdata("place");
     }
 
 }

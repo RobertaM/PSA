@@ -1,4 +1,5 @@
 <?php
+
 /**
  * User controller gives basic login/log-out/view functionality for all users.
  * @author Martynas Maciulevičius
@@ -32,7 +33,7 @@ class Places extends CI_Controller {
         $this->form_validation->set_rules('place-radio', 'place', 'required');
 
         // Actual form checking
-        if($this->form_validation->run() == FALSE) {
+        if ($this->form_validation->run() == FALSE) {
 
             // Set checkbox states
             $selected_place_id = $this->Place_model->get_selected_place();
@@ -46,14 +47,10 @@ class Places extends CI_Controller {
                 "title" => "Select a place"
             ));
 
-            $this->load->view("cart/cart");
-
-            $this->load->view("places/list_all",
-                Array('places' => $places)
+            $this->load->view("places/list_all", Array('places' => $places)
             );
-            
-            $this->load->view("static/footer");
 
+            $this->load->view("static/footer");
         } else {
 
             // Get selected radio button index from session if it exists
@@ -62,12 +59,19 @@ class Places extends CI_Controller {
 
             // Load all the submitted data into session variable
             $this->Place_model->temporarily_save_selected_place(
-                $selected_button
+                    array(
+                        "id" => $selected_button,
+                        "name" => $places[$selected_button]["name"]
+                    )
             );
 
             // Redirect
             redirect(base_url("products/select"), 'refresh');
         }
+
+//        echo "<pre>";
+//        var_dump();
+//        echo "<pre>";
     }
 
 }

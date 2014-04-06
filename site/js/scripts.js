@@ -1,18 +1,26 @@
 
-function getData(url, target, remove) {
+function getData(url, target, remove, callback) {
     var xmlhttp;
     if (window.XMLHttpRequest) {
-        // code for IE7+, Firefox, Chrome, Opera, Safari
+// code for IE7+, Firefox, Chrome, Opera, Safari
         xmlhttp = new XMLHttpRequest();
     } else {
-        // code for IE6, IE5
+// code for IE6, IE5
         xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
     }
     xmlhttp.onreadystatechange = function() {
         if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
-            remove = document.getElementById(remove);
-            remove.parentNode.removeChild(remove);
-            document.getElementById(target).innerHTML += xmlhttp.responseText;
+            if (remove !== null) {
+                remove = document.getElementById(remove);
+                remove.parentNode.removeChild(remove);
+            }
+            if (target !== null) {
+                document.getElementById(target).innerHTML += xmlhttp.responseText;
+            }
+            if (callback !== null) {
+                callback(xmlhttp);
+            }
+
         }
     };
     xmlhttp.open("GET", url, true);
@@ -20,7 +28,13 @@ function getData(url, target, remove) {
 }
 
 function baseUrl(url) {
-    return '/gal/site/' + url;
+    return '/PSA/site/' + url;
+}
+
+function addToCart(string) {
+    getData(baseUrl('cart/add/' + string), null, null, function(xmlhttp) {
+        console.log(xmlhttp.responseText);
+    });
 }
 
 function moreGalleries(offset) {

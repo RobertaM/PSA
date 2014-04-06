@@ -1,5 +1,6 @@
+#Sat Apr 05 14:44:01 EEST 2014
 eclipse.preferences.version=1
-include_path=0;/PSA website
+include_path=0;/psa
 org.eclipse.php.core.phpForamtterArrayInitSize=1
 org.eclipse.php.core.phpForamtterIndentationSize=4
 org.eclipse.php.core.phpForamtterIndentationWrappedLineSize=1

@@ -1,63 +1,59 @@
 <?php
+
 /**
  * Interaction with cart
  * @author Martynas Maciulevičius
  */
 class Cart_model extends CI_Model {
-
-    /**
-     * Add items to cart.
-     * Array or a single item.
-     * Data structure is defined in add_one_item() function
-     */
-    public function add_many_items($data) {
-
-        // Array?
-        if(!is_array($data))
-            throw new Exception("Array can not be added");
-
-        // Get items from cart
-        $cart_items = get_cart_items();
-
-        // Check data consistency and add to cart array
-        foreach ($data as $item) {
-            $item_ok = isset($item["item_id"]);
-            $item_ok = isset($item["quantity"]) && $item_ok;
-            $item_ok = isset($item["item_name"]) && $item_ok;
-
-            if($item_ok)
-                array_push(&$cart_items, $item);
-            else
-                throw new Exception("Array item can not be added");
-        }
-    }
-
     /**
      * Add one item to cart
-     * @param integer $item_id
-     * @param integer $qantity
      */
-    public function add_one_item($item_id, $qantity, $item_name) {
-        add_many_items(
-            Array(
-                "item_id" => $item_id,
-                "quantity" => $quantity,
-                "item_name" => $item_name
-            )
-        );
-    }
+//    public function add_one_item($place_id = null, $item_id = null, $item_option = null, $place_name = null, $item_name = null, $item_option_name = null) {
+//
+//        // Exit if any of these do not exist (Can't insert anything)
+//        if (!isset($place_id) || !isset($item_id) || !isset($item_option)) {
+//            return;
+//        }
+//
+//        // Replace blank spaces
+//        if (!isset($place_name)) {
+//            $place_name = "Not set";
+//        }
+//        if (!isset($item_name)) {
+//            $item_name = "Not set";
+//        }
+//        if (!isset($item_option_name)) {
+//            $item_option_name = "Not set";
+//        }
+//
+//        // Get saved data if it exists
+//        $cart_items = $this->session->userdata("cart_items");
+//
+//        // Initialise if array is not present
+//        if (!isset($cart_items)) {
+//            $cart_items = array();
+//        }
+//
+//        // Check if only one place is set and set if not
+//        if (!isset(key($cart_items))) {
+//            echo "key:" . key($cart_items);
+//        }
+//
+//        // Add to array
+////        $cart_items[$place_id]
+//        // Add to session storage
+//    }
 
     /**
      * @return Array containing cart items
      */
     public function get_cart_items() {
 
-        $session_cart = $this->session->userdata("cart_items");
-
-        // If session has no cart then return new array
-        if(!isset($session_cart))
-            $session_cart = Array();
-
-        return $session_cart;
+        return $this->session->userdata("cart_items");
     }
+
+    public function save_cart_items($item_array) {
+        $this->session->set_userdata("cart_items", $item_array);
+    }
+
 }
