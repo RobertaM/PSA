@@ -23,12 +23,13 @@ for ($i = 0; $i < $products_length; $i++) {
 
         // Print add to cart button for each element
         echo form_button(Array(
-            "content" => $products[$i]["option_name"],
+            "content" => $products[$i]["base_name"]." ".$products[$i]["option_name"],
             "onClick" => "addToCart('" .
-            $products[$i]["item_id"] . "/" .
+            $products[$i]["item_id"] . "/".
             $products[$i]["option_id"] . "/" .
             rawurlencode($products[$i]["item_name"]) . "/" .
             rawurlencode($products[$i]["option_name"]) . "/" .
+            rawurlencode($products[$i]["base_name"]) . "/" .
             "')",
             // CSS 
             "class" => "btn place-item-add-button",
