@@ -241,6 +241,8 @@ ul.multicolumn li {
 
 /* Place list view */
 .place-item {
+border-style:dashed;
+border-width:1px;
 	
 }
 
@@ -253,6 +255,9 @@ ul.multicolumn li {
 }
 
 .cart {
+    /*float:right;*/
+    position:absolute;
+    right:0px;
     text-align: left; 
     background-color: #e8e8e8;
 

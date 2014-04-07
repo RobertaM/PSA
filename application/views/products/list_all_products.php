@@ -11,11 +11,14 @@ for ($i = 0; $i < $products_length; $i++) {
     // True if new product is being iterated trough
     if (!isset($prev_id) || ($prev_id !== $curr_id)) {
         ?>
+        <?php echo '<br />'; ?>
         <div class="place-item">
             <h5 class="place-item-title">
-                <?php echo $products[$i]["item_name"] . "<br>"; ?>
-            </h5><?php
-            echo "Pridėti į krepšelį: ";
+                <?php echo $products[$i]["item_name"] ; ?>
+            </h5>
+            <?php echo "<dd><img  width='290' height='290' src='data:image/jpeg;base64,".base64_encode($products[$i]["image"])."'</dd><br />'" ;?>
+            
+                <?php echo "Pridėti į krepšelį: ";
 
             // Save last id for next iteration. it is no longer needed
             $prev_id = $curr_id;
