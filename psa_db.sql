@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 19, 2014 at 10:39 
+-- Generation Time: Apr 07, 2014 at 09:45 
 -- Server version: 5.6.16
 -- PHP Version: 5.5.9
 
@@ -23,20 +23,20 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `categories`
+-- Table structure for table `CATEGORIES`
 --
 
-CREATE TABLE IF NOT EXISTS `categories` (
+CREATE TABLE IF NOT EXISTS `CATEGORIES` (
   `cat_id` int(11) NOT NULL AUTO_INCREMENT,
   `cat_name` varchar(100) CHARACTER SET utf8 COLLATE utf8_lithuanian_ci DEFAULT NULL,
   PRIMARY KEY (`cat_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
--- Dumping data for table `categories`
+-- Dumping data for table `CATEGORIES`
 --
 
-INSERT INTO `categories` (`cat_id`, `cat_name`) VALUES
+INSERT INTO `CATEGORIES` (`cat_id`, `cat_name`) VALUES
 (1, 'Picos'),
 (2, 'Salotos'),
 (4, 'Užkandžiai');
@@ -44,10 +44,10 @@ INSERT INTO `categories` (`cat_id`, `cat_name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `items`
+-- Table structure for table `ITEMS`
 --
 
-CREATE TABLE IF NOT EXISTS `items` (
+CREATE TABLE IF NOT EXISTS `ITEMS` (
   `item_id` int(11) NOT NULL AUTO_INCREMENT,
   `cat_id` int(11) DEFAULT NULL,
   `item_name` varchar(100) CHARACTER SET utf8 COLLATE utf8_lithuanian_ci DEFAULT NULL,
@@ -58,10 +58,10 @@ CREATE TABLE IF NOT EXISTS `items` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
--- Dumping data for table `items`
+-- Dumping data for table `ITEMS`
 --
 
-INSERT INTO `items` (`item_id`, `cat_id`, `item_name`, `item_type`) VALUES
+INSERT INTO `ITEMS` (`item_id`, `cat_id`, `item_name`, `item_type`) VALUES
 (1, 1, 'Margarita', NULL),
 (2, 2, 'Salotos su karšta lašiša', NULL),
 (3, 1, 'Mafia', NULL),
@@ -70,10 +70,10 @@ INSERT INTO `items` (`item_id`, `cat_id`, `item_name`, `item_type`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `item_extras`
+-- Table structure for table `ITEM_EXTRAS`
 --
 
-CREATE TABLE IF NOT EXISTS `item_extras` (
+CREATE TABLE IF NOT EXISTS `ITEM_EXTRAS` (
   `extra_id` int(11) NOT NULL AUTO_INCREMENT,
   `option_id` int(11) DEFAULT NULL,
   `name` varchar(50) CHARACTER SET utf8 COLLATE utf8_lithuanian_ci DEFAULT NULL,
@@ -83,20 +83,20 @@ CREATE TABLE IF NOT EXISTS `item_extras` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
--- Dumping data for table `item_extras`
+-- Dumping data for table `ITEM_EXTRAS`
 --
 
-INSERT INTO `item_extras` (`extra_id`, `option_id`, `name`, `cost`) VALUES
+INSERT INTO `ITEM_EXTRAS` (`extra_id`, `option_id`, `name`, `cost`) VALUES
 (1, 1, 'Papildomi pievagrybiai', '0.50'),
 (3, 2, 'Papildomi pievagrybiai', '1.00');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `item_options`
+-- Table structure for table `ITEM_OPTIONS`
 --
 
-CREATE TABLE IF NOT EXISTS `item_options` (
+CREATE TABLE IF NOT EXISTS `ITEM_OPTIONS` (
   `option_id` int(11) NOT NULL AUTO_INCREMENT,
   `item_id` int(11) DEFAULT NULL,
   `option_name` varchar(100) CHARACTER SET utf8 COLLATE utf8_lithuanian_ci DEFAULT NULL,
@@ -106,10 +106,10 @@ CREATE TABLE IF NOT EXISTS `item_options` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
 
 --
--- Dumping data for table `item_options`
+-- Dumping data for table `ITEM_OPTIONS`
 --
 
-INSERT INTO `item_options` (`option_id`, `item_id`, `option_name`, `price`) VALUES
+INSERT INTO `ITEM_OPTIONS` (`option_id`, `item_id`, `option_name`, `price`) VALUES
 (1, 1, '30 cm', '8.99'),
 (2, 1, '50 cm', '29.99'),
 (3, 2, 'Maža porcija', '10.99'),
@@ -122,10 +122,10 @@ INSERT INTO `item_options` (`option_id`, `item_id`, `option_name`, `price`) VALU
 -- --------------------------------------------------------
 
 --
--- Table structure for table `item_pizza_base`
+-- Table structure for table `ITEM_PIZZA_BASE`
 --
 
-CREATE TABLE IF NOT EXISTS `item_pizza_base` (
+CREATE TABLE IF NOT EXISTS `ITEM_PIZZA_BASE` (
   `base_id` int(11) NOT NULL AUTO_INCREMENT,
   `option_id` int(11) DEFAULT NULL,
   `base_name` varchar(50) CHARACTER SET utf8 COLLATE utf8_lithuanian_ci DEFAULT NULL,
@@ -135,10 +135,10 @@ CREATE TABLE IF NOT EXISTS `item_pizza_base` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
--- Dumping data for table `item_pizza_base`
+-- Dumping data for table `ITEM_PIZZA_BASE`
 --
 
-INSERT INTO `item_pizza_base` (`base_id`, `option_id`, `base_name`, `cost`) VALUES
+INSERT INTO `ITEM_PIZZA_BASE` (`base_id`, `option_id`, `base_name`, `cost`) VALUES
 (1, 1, 'Įprastas padas', NULL),
 (2, 2, 'Įprastas padas', NULL),
 (3, 2, 'Itališkas traškus padas', '0.50');
@@ -225,52 +225,53 @@ CREATE TABLE IF NOT EXISTS `USER` (
   `username` varchar(25) COLLATE utf8_lithuanian_ci NOT NULL,
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `phone_number` (`phone_number`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_lithuanian_ci AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_lithuanian_ci AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `USER`
 --
 
 INSERT INTO `USER` (`name`, `surname`, `phone_number`, `user_id`, `role`, `password`, `username`) VALUES
-('Martynas', 'Mac', 123, 1, 'user', 'a', 'nitmar');
+('Martynas', 'Mac', 123, 1, 'user', 'a', 'nitmar'),
+('Nedas', 'Pekorius', 868217754, 2, 'user', 'pekorius', 'nedas');
 
 --
 -- Constraints for dumped tables
 --
 
 --
--- Constraints for table `items`
+-- Constraints for table `ITEMS`
 --
-ALTER TABLE `items`
-  ADD CONSTRAINT `items_ibfk_3` FOREIGN KEY (`cat_id`) REFERENCES `categories` (`cat_id`),
-  ADD CONSTRAINT `items_ibfk_1` FOREIGN KEY (`item_type`) REFERENCES `categories` (`cat_id`),
-  ADD CONSTRAINT `items_ibfk_2` FOREIGN KEY (`item_type`) REFERENCES `categories` (`cat_id`);
+ALTER TABLE `ITEMS`
+  ADD CONSTRAINT `ITEMS_ibfk_3` FOREIGN KEY (`cat_id`) REFERENCES `CATEGORIES` (`cat_id`),
+  ADD CONSTRAINT `ITEMS_ibfk_1` FOREIGN KEY (`item_type`) REFERENCES `CATEGORIES` (`cat_id`),
+  ADD CONSTRAINT `ITEMS_ibfk_2` FOREIGN KEY (`item_type`) REFERENCES `CATEGORIES` (`cat_id`);
 
 --
--- Constraints for table `item_extras`
+-- Constraints for table `ITEM_EXTRAS`
 --
-ALTER TABLE `item_extras`
-  ADD CONSTRAINT `item_extras_ibfk_1` FOREIGN KEY (`option_id`) REFERENCES `item_options` (`option_id`);
+ALTER TABLE `ITEM_EXTRAS`
+  ADD CONSTRAINT `ITEM_EXTRAS_ibfk_1` FOREIGN KEY (`option_id`) REFERENCES `ITEM_OPTIONS` (`option_id`);
 
 --
--- Constraints for table `item_options`
+-- Constraints for table `ITEM_OPTIONS`
 --
-ALTER TABLE `item_options`
-  ADD CONSTRAINT `item_options_ibfk_1` FOREIGN KEY (`item_id`) REFERENCES `items` (`item_id`);
+ALTER TABLE `ITEM_OPTIONS`
+  ADD CONSTRAINT `ITEM_OPTIONS_ibfk_1` FOREIGN KEY (`item_id`) REFERENCES `ITEMS` (`item_id`);
 
 --
--- Constraints for table `item_pizza_base`
+-- Constraints for table `ITEM_PIZZA_BASE`
 --
-ALTER TABLE `item_pizza_base`
-  ADD CONSTRAINT `item_pizza_base_ibfk_1` FOREIGN KEY (`option_id`) REFERENCES `item_options` (`option_id`);
+ALTER TABLE `ITEM_PIZZA_BASE`
+  ADD CONSTRAINT `ITEM_PIZZA_BASE_ibfk_1` FOREIGN KEY (`option_id`) REFERENCES `ITEM_OPTIONS` (`option_id`);
 
 --
 -- Constraints for table `PLACE_ITEMS`
 --
 ALTER TABLE `PLACE_ITEMS`
   ADD CONSTRAINT `PLACE_ITEMS_ibfk_3` FOREIGN KEY (`place_id`) REFERENCES `PLACES` (`place_id`),
-  ADD CONSTRAINT `PLACE_ITEMS_ibfk_1` FOREIGN KEY (`item_id`) REFERENCES `items` (`item_id`),
-  ADD CONSTRAINT `PLACE_ITEMS_ibfk_2` FOREIGN KEY (`item_id`) REFERENCES `items` (`item_id`);
+  ADD CONSTRAINT `PLACE_ITEMS_ibfk_1` FOREIGN KEY (`item_id`) REFERENCES `ITEMS` (`item_id`),
+  ADD CONSTRAINT `PLACE_ITEMS_ibfk_2` FOREIGN KEY (`item_id`) REFERENCES `ITEMS` (`item_id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
