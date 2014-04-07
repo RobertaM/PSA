@@ -15,15 +15,16 @@ for ($i = 0; $i < $products_length; $i++) {
             <h5 class="place-item-title">
                 <?php echo $products[$i]["item_name"] . "<br>"; ?>
             </h5><?php
-            echo "Add to cart: ";
+            echo "Pridėti į krepšelį: ";
 
             // Save last id for next iteration. it is no longer needed
             $prev_id = $curr_id;
         }
 
         // Print add to cart button for each element
+        echo "<br />";
         echo form_button(Array(
-            "content" => $products[$i]["base_name"]." ".$products[$i]["option_name"],
+            "content" => $products[$i]["option_name"],//." ".$products[$i]["option_name"],
             "onClick" => "addToCart('" .
             $products[$i]["item_id"] . "/".
             $products[$i]["option_id"] . "/" .
@@ -39,6 +40,7 @@ for ($i = 0; $i < $products_length; $i++) {
             $products[$i]["item_id"] . "-" .
             $products[$i]["option_id"]
         ));
+        echo $products[$i]["base_name"];
 
         // True if product ended (class = place-item)
         if (!isset($products[$i + 1]) ||
