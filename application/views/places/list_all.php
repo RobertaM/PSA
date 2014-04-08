@@ -32,7 +32,3 @@ echo form_submit(Array(
 
 echo form_close();
 ?>
-
-<div class="cart">
- something
-</div>

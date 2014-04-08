@@ -55,5 +55,9 @@ class Cart_model extends CI_Model {
     public function save_cart_items($item_array) {
         $this->session->set_userdata("cart_items", $item_array);
     }
+    
+    public function load_cart(){
+         $this->load->view("cart/cart");
+    }
 
 }

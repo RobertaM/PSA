@@ -4,7 +4,7 @@ class Products extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
-        $this->load->model(Array('Product_model'));
+        $this->load->model(Array('Product_model','Cart_model'));
     }
 
     public function index() {
@@ -17,6 +17,7 @@ class Products extends CI_Controller {
      */
     public function select() {
 
+        $this->Cart_model->load_cart();
         // Get data from database
         $products = $this->Product_model->get_products();
 
@@ -40,7 +41,9 @@ class Products extends CI_Controller {
             $place = $this->Place_model->get_selected_place();
 
             // Load headers and form itself
-            $this->load->view("static/header");
+            $this->load->view("static/header", Array(
+                "title" => "Select products"));
+            
             $this->load->view("products/list_all_products", Array(
                 'products' => $products,
                 'place' => $place

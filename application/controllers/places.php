@@ -40,13 +40,13 @@ class Places extends CI_Controller {
             foreach ($places as $key => $place) {
                 // Set to true if place id equals session place id
                 $places[$key]["checked"] = isset($selected_place_id) && ($place["place_id"] === $selected_place_id);
-            }
+            };
 
-            // Load headers and form itself
+            // Load headers and form itself        
+            
             $this->load->view("static/header", Array(
-                "title" => "Select a place"
-            ));
-
+                "title" => "Select a place"));
+            
             $this->load->view("places/list_all", Array('places' => $places)
             );
 

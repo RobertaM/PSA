@@ -18,7 +18,7 @@ for ($i = 0; $i < $products_length; $i++) {
             </h5>
             <?php echo "<dd><img  width='290' height='290' src='data:image/jpeg;base64,".base64_encode($products[$i]["image"])."'</dd><br />'" ;?>
             
-                <?php echo "Pridėti į krepšelį: ";
+                <?php echo "Add to cart: ";
 
             // Save last id for next iteration. it is no longer needed
             $prev_id = $curr_id;
@@ -43,8 +43,8 @@ for ($i = 0; $i < $products_length; $i++) {
             $products[$i]["item_id"] . "-" .
             $products[$i]["option_id"]
         ));
-        echo $products[$i]["base_name"];
-
+        echo " ".$products[$i]["base_name"];
+//        echo "<br />";        
         // True if product ended (class = place-item)
         if (!isset($products[$i + 1]) ||
                 (isset($products[$i + 1]) && ($products[$i + 1]["item_id"] !== $curr_id))) {

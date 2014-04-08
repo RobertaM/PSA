@@ -5,6 +5,7 @@
     $this->output->enable_profiler();
 ?>
 <!DOCTYPE html>
+<meta charset="UTF-8">
 <script type="text/javascript" src='/PSA/site/js/floating-1.12.js'>  
 </script> 
 <script type="text/javascript">  
@@ -14,7 +15,7 @@
             // border depending upon property used. Only one should be  
             // specified.  
 //             targetLeft: 2500,  
-            targetRight: 0,  
+            targetRight: 35,  
   
             // Represents distance from top or bottom browser window  
             // border depending upon property used. Only one should be  
@@ -33,7 +34,8 @@
 </script>  
     <html>
         <head>
-            <title><?php
+            <title>
+            <?php
                 // This variable is used for setting the page title dynamically
                 echo $title;
             ?>
@@ -49,7 +51,7 @@
             	href="<?php echo base_url('css/master.css') ?>" />
             
             <script type="text/javascript"
-            	src="http://code.jquery.com/jquery.min.js"></script>
+            	src="/PSA/site/js/jquery.min.js"></script>
             <script type="text/javascript"
             	src="<?php echo base_url('js/scripts.js') ?>"></script>
             

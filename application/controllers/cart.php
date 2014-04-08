@@ -7,7 +7,15 @@ class Cart extends CI_Controller {
 
         // Load cart model
         $this->load->model(Array('Cart_model', 'Place_model'));
+        
+
+        
     }
+
+//    public function  index(){
+//        $this->Cart_model->load_cart();
+//    }
+
 
     public function add($item_id = null, $item_option = null, $item_name = "Not set", $item_option_name = "Not set") {
 
