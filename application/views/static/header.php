@@ -5,6 +5,32 @@
     $this->output->enable_profiler();
 ?>
 <!DOCTYPE html>
+<script type="text/javascript" src='/PSA/site/js/floating-1.12.js'>  
+</script> 
+<script type="text/javascript">  
+    floatingMenu.add('cart',
+        {  
+            // Represents distance from left or right browser window  
+            // border depending upon property used. Only one should be  
+            // specified.  
+//             targetLeft: 2500,  
+            targetRight: 0,  
+  
+            // Represents distance from top or bottom browser window  
+            // border depending upon property used. Only one should be  
+            // specified.  
+            targetTop: 100,  
+//             targetBottom: 0,  
+  
+            // Uncomment one of those if you need centering on  
+            // X- or Y- axis.  
+//             centerX: true,  
+            // centerY: true,  
+  
+            // Remove this one if you don't want snap effect  
+            snap: true  
+        });  
+</script>  
     <html>
         <head>
             <title><?php

@@ -4,8 +4,8 @@
  */
 ?>
 
-        </div>
-            <div class="fifth left cart">
+        </div >
+            <div id="cart"  class="fifth left cart">
             <div class="cart-separator">
                 <div class="center">
                 <h4>CART</h4>

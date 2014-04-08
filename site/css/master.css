@@ -255,16 +255,19 @@ border-width:1px;
 }
 
 .cart {
-    /*float:right;*/
-    position:absolute;
+    position:absolute; 
+/*    top:10px;
     right:0px;
-    text-align: left; 
+    padding:16px;  */
+    border:2px solid #2266AA;  
+    /*z-index:100;*/
     background-color: #e8e8e8;
 
 }
 
 .cart-text{
 	margin-left: 1em;
+        text-align: left;
 }
 .cart-separator{
 	border-bottom: solid 1px #f8f8f8;

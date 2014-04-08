@@ -1,6 +1,5 @@
-
-<div class="cart">
+<!--<div  class="cart">
 	something
 </div>
 
-
+-->
