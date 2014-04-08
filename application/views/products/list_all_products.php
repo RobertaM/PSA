@@ -11,7 +11,9 @@ for ($i = 0; $i < $products_length; $i++) {
     // True if new product is being iterated trough
     if (!isset($prev_id) || ($prev_id !== $curr_id)) {
         ?>
-        <?php echo '<br />'; ?>
+        <?php //echo '<br />'; ?>
+        <?php  //echo "</pre>"; ?>
+        <?php  echo "<pre>"; ?>
         <div class="place-item">
             <h5 class="place-item-title">
                 <?php echo $products[$i]["item_name"] ; ?>
@@ -44,11 +46,13 @@ for ($i = 0; $i < $products_length; $i++) {
             $products[$i]["option_id"]
         ));
         echo " ".$products[$i]["base_name"];
+        
 //        echo "<br />";        
         // True if product ended (class = place-item)
         if (!isset($products[$i + 1]) ||
                 (isset($products[$i + 1]) && ($products[$i + 1]["item_id"] !== $curr_id))) {
             ?></div><?php
+            echo "</pre>";
     }
 }
 ?>

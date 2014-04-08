@@ -241,8 +241,7 @@ ul.multicolumn li {
 
 /* Place list view */
 .place-item {
-border-style:dashed;
-border-width:1px;
+
 	
 }
 
@@ -251,15 +250,15 @@ border-width:1px;
 }
 
 .place-item-title {
-	margin-left: 5%;
+	/*margin-left: 5%;*/
 }
 
 .cart {
     position:absolute; 
 /*    top:10px;
     right:0px;
-    padding:16px;  */
-    border:2px solid #2266AA;  
+    padding:16px;  #2266AA */
+    border:2px solid #ddd;  
     /*z-index:100;*/
     background-color: #e8e8e8;
 

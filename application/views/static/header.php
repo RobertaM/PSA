@@ -15,7 +15,7 @@
             // border depending upon property used. Only one should be  
             // specified.  
 //             targetLeft: 2500,  
-            targetRight: 35,  
+            targetRight: 75,  
   
             // Represents distance from top or bottom browser window  
             // border depending upon property used. Only one should be  
@@ -29,7 +29,7 @@
             // centerY: true,  
   
             // Remove this one if you don't want snap effect  
-            snap: true  
+//            snap: true  
         });  
 </script>  
     <html>

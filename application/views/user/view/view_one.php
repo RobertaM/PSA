@@ -6,6 +6,9 @@
 </h3>
 <div>
 	<?php 
-	echo "This is a placeholder text."
+	echo "This is a placeholder text.";
+        echo "<pre>";
+        echo print_r($this->session);
+        echo "</pre>"; 
 	?>
 </div>

@@ -1,7 +1,7 @@
  <div id="cart"  class="fifth left cart">
             <div class="cart-separator">
-                <div class="centr">
-                <h4>CART</h4>
+                <div style="text-align: center;" class="centr">
+                <h4>Shopping Cart</h4>
                 </div>
             </div>
             <?php for ($i=0; $i <5 ; $i++) { 

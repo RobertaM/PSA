@@ -17,7 +17,7 @@ class Products extends CI_Controller {
      */
     public function select() {
 
-        $this->Cart_model->load_cart();
+//        $this->Cart_model->load_cart();
         // Get data from database
         $products = $this->Product_model->get_products();
 
@@ -49,6 +49,7 @@ class Products extends CI_Controller {
                 'place' => $place
             ));
             $this->load->view("static/footer");
+            $this->Cart_model->load_cart();
         } else {
 
             // Load all the submitted data into session variable
