@@ -10,7 +10,6 @@ class Cart_model extends CI_Model {
      * @return Array containing cart items
      */
     public function get_cart_items() {
-
         return $this->session->userdata("cart");
     }
 
@@ -22,11 +21,19 @@ class Cart_model extends CI_Model {
      * @return Boolean True if cart has items in it.
      */
     public function cart_exists() {
-        return isset($this->session->userdata("cart"));
+
+        return ($this->session->userdata("cart") === null);
     }
-    
-    public function load_cart(){
-         $this->load->view("cart/cart");
+
+    public function load_cart() {
+        $this->load->view("cart/cart");
+    }
+
+    /**
+     * Generates a new order and inserts into database
+     */
+    public function submit_all_products() {
+//        $this->db->insert
     }
 
 }
