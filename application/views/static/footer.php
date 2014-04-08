@@ -3,10 +3,9 @@
  * Please do not align this code automatically
  */
 ?>
-
-        </div >
+        </div>
             <div id="footer-sep" class="clear"></div>
-            
+
             <footer>
                 <p class='blank-list-style'>
                     This site belongs to oh-yeah-profit organization. You owe us 100$.

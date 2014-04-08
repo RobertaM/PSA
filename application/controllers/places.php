@@ -68,10 +68,6 @@ class Places extends CI_Controller {
             // Redirect
             redirect(base_url("products/select"), 'refresh');
         }
-
-//        echo "<pre>";
-//        var_dump();
-//        echo "<pre>";
     }
 
 }

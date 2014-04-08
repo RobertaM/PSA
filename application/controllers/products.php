@@ -16,8 +16,7 @@ class Products extends CI_Controller {
      * Select products from list and add them to cart.
      */
     public function select() {
-
-//        $this->Cart_model->load_cart();
+        
         // Get data from database
         $products = $this->Product_model->get_products();
 
