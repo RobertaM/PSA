@@ -2,6 +2,12 @@
 <?php
 $this->load->model(Array('Cart_model', 'Place_model'));
 $cart_items = $this->Cart_model->get_cart_items();
+
+// Return if cart does not exist (Loose check)
+if ($cart_items == false) {
+    return;
+}
+
 $selected_place = $this->Place_model->get_selected_place();
 $place_id = $selected_place['id'];
 $name = 'name';
