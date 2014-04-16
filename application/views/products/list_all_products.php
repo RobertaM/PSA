@@ -11,16 +11,19 @@ for ($i = 0; $i < $products_length; $i++) {
     // True if new product is being iterated trough
     if (!isset($prev_id) || ($prev_id !== $curr_id)) {
         ?>
-        <?php //echo '<br />'; ?>
-        <?php  //echo "</pre>"; ?>
-        <?php  echo "<pre>"; ?>
         <div class="place-item">
-            <h5 class="place-item-title">
-                <?php echo $products[$i]["item_name"] ; ?>
-            </h5>
-            <?php echo "<dd><img  width='290' height='290' src='data:image/jpeg;base64,".base64_encode($products[$i]["image"])."'</dd><br />'" ;?>
-            
-                <?php echo "Add to cart: ";
+            <div class="place-item-data left half">
+                <h5 class="place-item-title">
+                    <?php echo $products[$i]["item_name"]; ?>
+                </h5>
+            </div>
+            <div class="left half"
+            <dd class="left">
+                <img  width='290' height='290' src="data:image/jpeg;base64,<?php echo base64_encode($products[$i]["image"]) ?>">
+            </dd>
+            </div>
+            <?php
+            echo "Add to cart: ";
 
             // Save last id for next iteration. it is no longer needed
             $prev_id = $curr_id;
@@ -29,13 +32,12 @@ for ($i = 0; $i < $products_length; $i++) {
         // Print add to cart button for each element
         echo "<br />";
         echo form_button(Array(
-            "content" => $products[$i]["option_name"],//." ".$products[$i]["option_name"],
+            "content" => $products[$i]["option_name"], //." ".$products[$i]["option_name"],
             "onClick" => "addToCart('" .
-            $products[$i]["item_id"] . "/".
+            $products[$i]["item_id"] . "/" .
             $products[$i]["option_id"] . "/" .
             rawurlencode($products[$i]["item_name"]) . "/" .
             rawurlencode($products[$i]["option_name"]) . "/" .
-            rawurlencode($products[$i]["base_name"]) . "/" .
             "')",
             // CSS 
             "class" => "btn place-item-add-button",
@@ -45,14 +47,12 @@ for ($i = 0; $i < $products_length; $i++) {
             $products[$i]["item_id"] . "-" .
             $products[$i]["option_id"]
         ));
-        echo " ".$products[$i]["base_name"];
-        
+
 //        echo "<br />";        
         // True if product ended (class = place-item)
         if (!isset($products[$i + 1]) ||
                 (isset($products[$i + 1]) && ($products[$i + 1]["item_id"] !== $curr_id))) {
             ?></div><?php
-            echo "</pre>";
     }
 }
 ?>
