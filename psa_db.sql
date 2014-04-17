@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.1.6
+-- version 4.0.6deb1
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 07, 2014 at 05:02 
--- Server version: 5.6.16
--- PHP Version: 5.5.9
+-- Generation Time: Apr 17, 2014 at 06:22 PM
+-- Server version: 5.5.35-0ubuntu0.13.10.2
+-- PHP Version: 5.5.3-1ubuntu2.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -90,8 +90,8 @@ CREATE TABLE IF NOT EXISTS `ITEM_EXTRAS` (
 --
 
 INSERT INTO `ITEM_EXTRAS` (`extra_id`, `option_id`, `name`, `cost`) VALUES
-(1, 1, 'Papildomi pievagrybiai', '0.50'),
-(3, 2, 'Papildomi pievagrybiai', '1.00');
+(1, 1, 'Papildomi pievagrybiai', 0.50),
+(3, 2, 'Papildomi pievagrybiai', 1.00);
 
 -- --------------------------------------------------------
 
@@ -113,38 +113,14 @@ CREATE TABLE IF NOT EXISTS `ITEM_OPTIONS` (
 --
 
 INSERT INTO `ITEM_OPTIONS` (`option_id`, `item_id`, `option_name`, `price`) VALUES
-(1, 1, '30 cm', '8.99'),
-(2, 1, '50 cm', '29.99'),
-(3, 2, 'Maža porcija', '10.99'),
-(5, 2, 'Didelė porcija', '15.00'),
-(6, 3, '30 cm', '8.99'),
-(7, 4, '50 cm', '29.99'),
-(8, 3, '50 cm', '29.99'),
-(9, 4, '30 cm', '8.99');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `ITEM_PIZZA_BASE`
---
-
-CREATE TABLE IF NOT EXISTS `ITEM_PIZZA_BASE` (
-  `base_id` int(11) NOT NULL AUTO_INCREMENT,
-  `option_id` int(11) DEFAULT NULL,
-  `base_name` varchar(50) CHARACTER SET utf8 COLLATE utf8_lithuanian_ci DEFAULT NULL,
-  `cost` decimal(6,2) DEFAULT NULL,
-  PRIMARY KEY (`base_id`),
-  KEY `option_id` (`option_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
-
---
--- Dumping data for table `ITEM_PIZZA_BASE`
---
-
-INSERT INTO `ITEM_PIZZA_BASE` (`base_id`, `option_id`, `base_name`, `cost`) VALUES
-(1, 1, 'Įprastas padas', NULL),
-(2, 2, 'Įprastas padas', NULL),
-(3, 2, 'Itališkas traškus padas', '0.50');
+(1, 1, '30 cm', 8.99),
+(2, 1, '50 cm', 29.99),
+(3, 2, 'Maža porcija', 10.99),
+(5, 2, 'Didelė porcija', 15.00),
+(6, 3, '30 cm', 8.99),
+(7, 4, '50 cm', 29.99),
+(8, 3, '50 cm', 29.99),
+(9, 4, '30 cm', 8.99);
 
 -- --------------------------------------------------------
 
@@ -171,12 +147,12 @@ CREATE TABLE IF NOT EXISTS `ORDERS` (
 --
 
 CREATE TABLE IF NOT EXISTS `PLACES` (
-  `place_id` int(11) NOT NULL,
+  `place_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` text COLLATE utf8_lithuanian_ci NOT NULL,
   `description` text COLLATE utf8_lithuanian_ci NOT NULL,
   `adress` text COLLATE utf8_lithuanian_ci NOT NULL,
   PRIMARY KEY (`place_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_lithuanian_ci;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_lithuanian_ci AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `PLACES`
@@ -261,12 +237,6 @@ ALTER TABLE `ITEM_EXTRAS`
 --
 ALTER TABLE `ITEM_OPTIONS`
   ADD CONSTRAINT `ITEM_OPTIONS_ibfk_1` FOREIGN KEY (`item_id`) REFERENCES `ITEMS` (`item_id`);
-
---
--- Constraints for table `ITEM_PIZZA_BASE`
---
-ALTER TABLE `ITEM_PIZZA_BASE`
-  ADD CONSTRAINT `ITEM_PIZZA_BASE_ibfk_1` FOREIGN KEY (`option_id`) REFERENCES `ITEM_OPTIONS` (`option_id`);
 
 --
 -- Constraints for table `PLACE_ITEMS`
