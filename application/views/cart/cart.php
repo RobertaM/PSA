@@ -12,9 +12,6 @@ $selected_place = $this->Place_model->get_selected_place();
 $place_id = $selected_place['id'];
 $name = 'name';
 $qty = 'quantity';
-echo "<pre>";
-var_dump($cart_items[$place_id]);
-echo "</pre>";
 ?>
 
 <div id="cart"  class="fifth left cart">
