@@ -167,12 +167,7 @@ class User extends CI_Controller {
         } else {
 
             $this->User_model->set_user();
-
-        }
-        
-        
+        }   
     }
-
 }
-
 ?>

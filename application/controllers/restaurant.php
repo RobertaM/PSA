@@ -4,7 +4,7 @@ class Restaurant extends CI_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->library('form_validation');
-        $this->load->model("Restaurant_model");
+        $this->load->model('Restaurant_model');
     }   
 
     public function index(){
@@ -27,6 +27,19 @@ class Restaurant extends CI_Controller {
         }  else {
         	$this->Restaurant_model->set_restaurant();
         }
+    }
+
+    public function deleteRestaurant($place_id=''){
+        //echo $place_id;
+        $this->Restaurant_model->delete_restaurant($place_id);
+    }
+
+    public function manageRestaurants(){
+        $restaurant['restaurant'] = $this->Restaurant_model->get_restaurant();
+
+        $this->load->view('static/header');
+        $this->load->view('restaurant/delete_restaurant', $restaurant);
+        $this->load->view('static/footer');
     }
 }
 
