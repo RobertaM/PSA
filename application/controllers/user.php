@@ -158,15 +158,14 @@ class User extends CI_Controller {
         $this->form_validation->set_rules('passconf', 'passconf', 'trim|required|matches[password]');
         $this->form_validation->set_rules('phone_number', 'phone_number', 'trim|required|min_length[9]');
 
-        $this->load->view('static/header');
-        $this->load->view('user/register/register_form');
-        $this->load->view('static/footer');
 
-        if ($this->form_validation->run() === FALSE){
-            echo "omg wtf happening";
+        if ($this->form_validation->run() === FALSE){ 
+            $this->load->view('static/header');
+            $this->load->view('user/register/register_form');
+            $this->load->view('static/footer');
         } else {
-
-            $this->User_model->set_user();
+            $role = 'user';
+            $this->User_model->set_user($role);
         }   
     }
 }

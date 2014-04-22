@@ -18,11 +18,12 @@ class User_model extends CI_Model {
         $this->load->database();
     }
 
-    public function set_user(){
+    public function set_user($role){
         $user = array(
             'name' => $this->input->post('name'),
             'surname' => $this->input->post('surname'),
             'username' => $this->input->post('username'),
+            'role' => $role,
             'password' => $this->input->post('password'),
             'phone_number' => $this->input->post('phone_number')
         );

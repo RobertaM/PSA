@@ -41,7 +41,6 @@ class Restaurant extends CI_Controller {
     }
 
     public function deleteRestaurant($place_id=''){
-        //echo $place_id;
         $this->Restaurant_model->delete_restaurant($place_id);
     }
 
