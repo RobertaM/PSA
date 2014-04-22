@@ -9,6 +9,9 @@ class Cart extends CI_Controller {
         $this->load->model(Array('Cart_model', 'Place_model'));
     }
 
+    /**
+     * Sorry, too long and i am lazy to refactor. Martin. :/
+     */
     public function add($item_id = null, $item_option = null, $item_name = "Not set", $item_option_name = "Not set") {
 
         // Get place name
@@ -16,11 +19,9 @@ class Cart extends CI_Controller {
 
         // Return if no place and item is specified
         if (!(isset($item_id) && isset($place["id"]))) {
-            $this->output->set_content_type('application/json')->
-                    set_output(json_encode(array(
-                        'success' => false,
-                        'message' => 'Error: You son of a ...'
-            )));
+            $this->send_json_result(
+                    'Error: You son of a ...'
+            );
             return;
         }
 
@@ -77,18 +78,64 @@ class Cart extends CI_Controller {
         // Save to session data
         $this->Cart_model->save_cart_items($cart);
 
-        $this->output->set_content_type('application/json')->set_output(
-                json_encode(
-                        array(
-                            'success' => true,
-                            'message' => "Success. Item inserted sucessfully"
-                        )
-                )
-        );
+        // Return json result
+        $this->send_json_result("Success. Item inserted sucessfully", true);
     }
 
-    public function submit_all_items() {
-        
+    /**
+     * Submits cart from session
+     */
+    public function submit() {
+        $this->Cart_model->submit_cart();
+        $this->send_json_result("Submitted!", true);
+    }
+
+    /**
+     * Displays message and success status
+     * 
+     * @param type $$message Message to encode
+     */
+    private function send_json_result($message, $success = false) {
+        $this->output->set_content_type('application/json')->
+                set_output(json_encode(array(
+                    "success" => $success,
+                    "message" => $message
+        )));
+    }
+
+    /**
+     * Permanently clears cart content.
+     */
+    public function clear() {
+        $this->Cart_model->destroy_cart();
+        $this->send_json_result("Success. Cart cleared,", true);
+    }
+
+    /**
+     * Remove item from cart
+     * 
+     * @param type $item_id Item to remove
+     * @param type $item_option option to remove
+     */
+    public function remove($item_id, $item_option) {
+
+        if (!$this->User_model->is_logged_in()) {
+            $this->send_json_result('Error: You son of a ...');
+            return;
+        }
+
+        // Get place id, cart
+        $place_id = $this->Place_model->get_selected_place()["id"];
+
+        // Get cart
+        $cart = $this->Cart_model->load_cart();
+
+        // Check if cart index exists
+        if (isset($cart[$place_id][$item_id][$item_option])) {
+
+            // TODO write remove logic
+        }
+        echo "not implemented yet";
     }
 
 }

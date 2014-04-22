@@ -1,6 +1,5 @@
 <?php
 $this->load->helper('form');
-//echo form_open(base_url("products/select"));
 // Print all products and add cart buttons to each selection
 $products_length = count($products);
 $prev_id = null;
@@ -27,7 +26,7 @@ for ($i = 0; $i < $products_length; $i++) {
 
                 // Print add to cart button for each element
                 echo form_button(Array(
-                    "content" => $products[$i]["option_name"], //." ".$products[$i]["option_name"],
+                    "content" => $products[$i]["option_name"],
                     "onClick" => "addToCart('" .
                     $products[$i]["item_id"] . "/" .
                     $products[$i]["option_id"] . "/" .
@@ -43,16 +42,16 @@ for ($i = 0; $i < $products_length; $i++) {
                     $products[$i]["option_id"]
                 ));
 
-//        echo "<br />";        
                 // True if product ended (class = place-item)
                 if (!isset($products[$i + 1]) ||
                         (isset($products[$i + 1]) && ($products[$i + 1]["item_id"] !== $curr_id))) {
                     ?>
                 </div>
             </div>
-            <dd class="left half">
-                <img width='290' height='290' src="data:image/jpeg;base64,<?php echo base64_encode($products[$i]["image"]) ?>">
-            </dd>
+            <div class="half">
+                <img class="product-image" src="data:image/jpeg;base64,<?php echo base64_encode($products[$i]["image"]) ?>">
+            </div>
+            <div class="clear"></div>
         </div>
         <?php
     }

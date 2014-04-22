@@ -43,7 +43,7 @@ class User_model extends CI_Model {
 
             // Check password
             if (!$response === FALSE &&
-                $data['password'] === $response[0]['password']) {
+                    $data['password'] === $response[0]['password']) {
 
                 // Remove password field before returning
                 unset($response[0]['password']);
@@ -87,7 +87,7 @@ class User_model extends CI_Model {
      * @return boolean User's login status.
      */
     public function is_logged_in() {
-        if ($this->session->userdata('user_logged_in_status') === TRUE){
+        if ($this->session->userdata('user_logged_in_status') === TRUE) {
             return TRUE;
         }
         return FALSE;
@@ -96,15 +96,26 @@ class User_model extends CI_Model {
     /**
      * @return boolean TRUE if user is a manager.
      */
-    public function is_manager(){
+    public function is_manager() {
 
         $user_data = $this->session->userdata('user_data');
 
         if ($this->session->userdata('user_logged_in_status') === TRUE &&
-            $user_data['role'] === "manager"){
+                $user_data['role'] === "manager") {
             return TRUE;
         }
         return FALSE;
+    }
+
+    /**
+     * @return type Logged in user id or null if not logged in
+     */
+    public function get_id() {
+        if ($this->is_logged_in()) {
+            return $this->session->userdata('user_data')["user_id"];
+        } else {
+            return null;
+        }
     }
 
 }

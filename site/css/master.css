@@ -273,10 +273,15 @@ ul.multicolumn li {
     margin-bottom: 1em;
 }
 
-/** Item view */
+/** Place item view */
 .place-item-add-button, .place-item-add-ident {
     display: block;
     margin-left: 5%;
+}
+
+/** Purchase item view */
+.product-image {
+    max-width: 270px;
 }
 /* =Footer
 -----------------------------------------------------------------------------*/

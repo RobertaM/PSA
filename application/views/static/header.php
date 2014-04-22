@@ -109,5 +109,10 @@
 
                     <div class="make-some-space ">
 
-                    </div>
-        		<div class="fourfifth left" id="main-content">
+                    </div><?php
+                    $content_width = "fivesixth";
+//                    if($this->Cart_model->cart_exists()) {
+//                        $content_width="threefifth left";
+//                    }
+                    ?>
+        		<div class="<?php echo $content_width ?>" id="main-content">
