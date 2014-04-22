@@ -27,5 +27,26 @@
         $this->db->where('place_id', $id);
         $this->db->delete('PLACES');
     }
+    public function get_one_restaurant($id){
+
+        $this->db->select('place_id, name, description, adress');
+        $this->db->from("PLACES");
+        $this->db->where('place_id', $id);
+
+        $restaurant = $this->db->get()->result_array();
+        return $restaurant;
+    }
+
+    public function update_restaurant($id){
+        echo $id;
+        $places = array(
+            'name' => $this->input->post('name'),
+            'description' => $this->input->post('description'),
+            'adress' => $this->input->post('adress')
+        );
+
+        $this->db->where('place_id', $id);
+        $this->db->update('PLACES', $places);
+    }
   }
 ?>

@@ -14,18 +14,29 @@ class Restaurant extends CI_Controller {
 
     public function addRestaurant(){
     	$this->load->helper('form');
-    	//$this->load->library('form_validation');
-
+        $id = $this->uri->segment(3);
+        if ($id === FALSE){
+            $restaurant['restaurant'] = null;
+        } else {
+            $restaurant['restaurant'] = $this->Restaurant_model->get_one_restaurant($id);     
+        }
     	$this->form_validation->set_rules('name', 'Name', 'required');
         $this->form_validation->set_rules('description', 'Description', 'required');
         $this->form_validation->set_rules('adress', 'Address', 'required');
-   
         if($this->form_validation->run() === FALSE){
         	$this->load->view('static/header');
-            $this->load->view('restaurant/add_restaurant');
+            if($id === FALSE){
+                $this->load->view('restaurant/add_restaurant');
+            } else {
+                $this->load->view('restaurant/edit_restaurant', $restaurant);
+            }
             $this->load->view('static/footer');
-        }  else {
-        	$this->Restaurant_model->set_restaurant();
+        } else {
+            if($id === FALSE){
+                $this->Restaurant_model->set_restaurant();
+            } else {
+                $this->Restaurant_model->update_restaurant($id);
+            }
         }
     }
 
