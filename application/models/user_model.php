@@ -116,6 +116,8 @@ class User_model extends CI_Model {
         } else {
             return null;
         }
+    }
+
     public function get_users(){
         $this->db->select();
         $this->db->from("USER");

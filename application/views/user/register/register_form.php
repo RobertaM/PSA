@@ -1,5 +1,4 @@
 <?php echo form_open('user/register/'.$id);
-var_dump($user);
 ?>
 	
 	<h5>Name</h5>
