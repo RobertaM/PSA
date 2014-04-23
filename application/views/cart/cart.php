@@ -31,7 +31,10 @@ $qty = 'quantity';
             if (is_array($product)) {
                 foreach ($product as $option) {
                     if (is_array($option)) {
-                        echo urldecode($product[$name]) . " " . urldecode($option[$name]) . " " . urldecode($option[$qty]) . '<br>';
+                        echo
+                        urldecode($product[$name]) . " " .
+                        urldecode($option[$name]) . " " .
+                        urldecode($option[$qty]) . '<br>';
                     }
                 }
             }
@@ -39,5 +42,20 @@ $qty = 'quantity';
         </div>
 
     <?php } ?>
-    <input type="submit" value="Submit" class="btn">
+    <div>
+        <?php
+        echo form_button(Array(
+            "content" => "Send order",
+            "onClick" => "submitOrders()",
+            "class" => "btn left",
+            "id" => "button-send-order"
+        ));
+        echo form_button(Array(
+            "content" => "Clear cart",
+            "onClick" => "clearCart()",
+            "class" => "btn left",
+            "id" => "button-clear-cart"
+        ));
+        ?>
+    </div>
 </div>

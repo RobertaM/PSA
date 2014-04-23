@@ -1,24 +1,19 @@
 
-function getData(url, target, remove, callback) {
+function send(url, callback) {
     var xmlhttp;
     if (window.XMLHttpRequest) {
-// code for IE7+, Firefox, Chrome, Opera, Safari
+        // code for IE7+, Firefox, Chrome, Opera, Safari
         xmlhttp = new XMLHttpRequest();
     } else {
-// code for IE6, IE5
+        // code for IE6, IE5
         xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
     }
     xmlhttp.onreadystatechange = function() {
         if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
-            if (remove !== null) {
-                remove = document.getElementById(remove);
-                remove.parentNode.removeChild(remove);
-            }
-            if (target !== null) {
-                document.getElementById(target).innerHTML += xmlhttp.responseText;
-            }
             if (callback !== null) {
-                callback(xmlhttp);
+                // Use callback function
+//                console.log(xmlhttp.responseText);
+                callback(JSON.parse(xmlhttp.responseText));
             }
 
         }
@@ -32,14 +27,22 @@ function baseUrl(url) {
 }
 
 function addToCart(string) {
-    getData(baseUrl('cart/add/' + string), null, null, function(xmlhttp) {
-        console.log(xmlhttp.responseText);
+    send(baseUrl('cart/add/' + string), function(jsonResult) {
+        console.log(jsonResult);
     });
 }
 
-function moreGalleries(offset) {
-    document.getElementById('ajax-more-gall-click').setAttribute('onClick', '');
-    document.getElementById('ajax-more-gall-info').style.display = 'none';
-    document.getElementById('ajax-more-gall-load').style.display = 'block';
-    getData(baseUrl('galleries/from/' + offset + '/ajax'), 'main-content', 'ajax-more-gall-click');
+function submitOrders() {
+    // Send request
+    send(baseUrl('cart/submit'), function(jsonResult) {
+
+        // Request callback
+        console.log(jsonResult);
+    });
+}
+
+function clearCart() {
+    send(baseUrl('cart/clear'), function(jsonResult) {
+        console.log(jsonResult);
+    });
 }

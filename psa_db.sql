@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.6deb1
+-- version 4.0.10deb1
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 17, 2014 at 06:22 PM
--- Server version: 5.5.35-0ubuntu0.13.10.2
--- PHP Version: 5.5.3-1ubuntu2.3
+-- Generation Time: Apr 22, 2014 at 10:31 PM
+-- Server version: 5.5.35-1ubuntu1
+-- PHP Version: 5.5.9-1ubuntu4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -125,20 +125,65 @@ INSERT INTO `ITEM_OPTIONS` (`option_id`, `item_id`, `option_name`, `price`) VALU
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `ORDERED_ITEMS`
+--
+
+CREATE TABLE IF NOT EXISTS `ORDERED_ITEMS` (
+  `order_id` int(11) NOT NULL,
+  `item_id` int(11) NOT NULL,
+  `option_id` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `ORDERED_ITEMS`
+--
+
+INSERT INTO `ORDERED_ITEMS` (`order_id`, `item_id`, `option_id`, `quantity`) VALUES
+(4, 2, 5, 7),
+(5, 2, 5, 2),
+(6, 2, 5, 4),
+(7, 1, 1, 3),
+(8, 1, 1, 13),
+(9, 1, 1, 3),
+(10, 1, 1, 5),
+(10, 1, 2, 1);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `ORDERS`
 --
 
 CREATE TABLE IF NOT EXISTS `ORDERS` (
   `order_id` int(11) NOT NULL AUTO_INCREMENT,
+  `place_id` int(11) NOT NULL,
   `worker_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `product_id` int(11) NOT NULL,
-  `status` varchar(11) COLLATE utf8_lithuanian_ci NOT NULL,
-  `date` date NOT NULL,
-  `attribute` text COLLATE utf8_lithuanian_ci NOT NULL,
-  `quantity` int(11) NOT NULL,
-  PRIMARY KEY (`order_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_lithuanian_ci AUTO_INCREMENT=1 ;
+  `order_status` varchar(11) COLLATE utf8_lithuanian_ci NOT NULL,
+  `date_received` datetime NOT NULL,
+  `date_seen` datetime NOT NULL,
+  `date_completed` datetime NOT NULL,
+  PRIMARY KEY (`order_id`),
+  UNIQUE KEY `order_id` (`order_id`),
+  KEY `order_id_2` (`order_id`),
+  KEY `order_id_3` (`order_id`),
+  KEY `order_id_4` (`order_id`),
+  KEY `order_id_5` (`order_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_lithuanian_ci AUTO_INCREMENT=11 ;
+
+--
+-- Dumping data for table `ORDERS`
+--
+
+INSERT INTO `ORDERS` (`order_id`, `place_id`, `worker_id`, `user_id`, `order_status`, `date_received`, `date_seen`, `date_completed`) VALUES
+(4, 1, 0, 1, '0', '2014-04-21 19:39:36', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(5, 1, 0, 1, '0', '2014-04-21 19:51:26', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(6, 1, 0, 1, '0', '2014-04-21 19:51:48', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(7, 0, 0, 1, '0', '2014-04-21 20:09:54', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(8, 0, 0, 1, '0', '2014-04-21 20:10:13', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(9, 0, 0, 1, '0', '2014-04-21 22:02:24', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(10, 0, 0, 1, '0', '2014-04-21 22:33:16', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 

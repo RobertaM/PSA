@@ -273,7 +273,7 @@ ul.multicolumn li {
     margin-bottom: 1em;
 }
 
-/** Item view */
+/** Place item view */
 .place-item-add-button, .place-item-add-ident {
     display: block;
     margin-left: 5%;
@@ -297,6 +297,10 @@ display: block;
 }
 .change:hover.button{
 color:#0066CC;
+
+/** Purchase item view */
+.product-image {
+    max-width: 270px;
 }
 /* =Footer
 -----------------------------------------------------------------------------*/

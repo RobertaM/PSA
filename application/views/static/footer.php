@@ -4,6 +4,13 @@
  */
 ?>
         </div>
+        <?php if(FALSE && $this->Cart_model->cart_exists()) {
+            // Always false for now
+            echo "exists";
+         ?>
+        <div class="fifth left"></div>
+        <?php 
+        } ?>
             <div id="footer-sep" class="clear"></div>
 
             <footer>

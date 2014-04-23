@@ -9,14 +9,11 @@ class Order_model extends CI_Model {
 
         // Get selected place from Place_model
         $this->load->model("Order_model");
-
-        $this->db->select("ORDERS.*,ITEM_OPTIONS.*,ITEMS.*,USER.*");
-        $this->db->from("ORDERS");
-        $this->db->join("ITEM_OPTIONS", "ITEM_OPTIONS.option_id = ORDERS.option_id", "left");
-        $this->db->join("ITEMS", "ITEMS.item_id = ORDERS.product_id", "left");
-        $this->db->join("USER", "USER.user_id = ORDERS.user_id", "left");
-        //$this->db->join("ORDERS", "ORDERS.worker_id = USER.user_id", "left");
-        $this->db->order_by('ORDERS.status asc, ORDERS.date asc');
+        $this->db->SELECT("*")->FROM("ORDERS,ORDERED_ITEMS");        
+        $this->db->join("USER AS WRK","WRK.user_id=ORDERS.worker_id","left");
+        $this->db->join("USER AS USR","USR.user_id=ORDERS.user_id","left");
+        $this->db->join("ITEMS","ITEMS.item_id=ORDERED_ITEMS.item_id","left");
+        $this->db->where("`ORDERS`.`order_id`=`ORDERED_ITEMS`.`order_id`");
         $response = $this->db->get()->result_array();
 
         return $response;
