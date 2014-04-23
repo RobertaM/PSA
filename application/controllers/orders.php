@@ -10,13 +10,13 @@ class Orders extends CI_Controller {
 
     public function index() {
         // Redirect
-        redirect(base_url("orders/select"), 'refresh');
+        redirect(base_url("orders/listing"), 'refresh');
     }
 
     /**
      * Select products from list and add them to cart.
      */
-    public function select() {
+    public function listing() {
 
         // Get data from database
         $products = $this->Order_model->get_orders();
