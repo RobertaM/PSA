@@ -38,7 +38,6 @@
     }
 
     public function update_restaurant($id){
-        echo $id;
         $places = array(
             'name' => $this->input->post('name'),
             'description' => $this->input->post('description'),

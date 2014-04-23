@@ -279,6 +279,25 @@ ul.multicolumn li {
     margin-left: 5%;
 }
 
+.delete{
+    float: right;
+    display: block;
+    text-decoration: none;
+    color:#db0000;
+}
+.delete:hover.button{
+color:#0066CC;
+}
+
+.change{
+float: right;
+display: block;
+    text-decoration: none;
+    color:#169112;
+}
+.change:hover.button{
+color:#0066CC;
+
 /** Purchase item view */
 .product-image {
     max-width: 270px;
