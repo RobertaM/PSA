@@ -21,7 +21,7 @@ class Order_model extends CI_Model {
 //        $this->db->join("USER AS USR","USR.user_id=ORDERS.user_id","natural");
 //        $this->db->join("ITEMS AS ITEM","ITEM.item_id=ORDERED_ITEMS.item_id","left");
 //        $this->db->where("`ORDERS`.`order_id`=`ORDERED_ITEMS`.`order_id`");
-        $sql="
+        $sql = "
             SELECT  CONCAT(`WRK`.`name`,' ', `WRK`.`surname`,' ',`WRK`.`phone_number`) AS `WORKER`,CONCAT(`USR`.`name`,' ', `USR`.`surname`,' ',`USR`.`phone_number`) AS `USER`,`ORDERS`.*,`ORDERED_ITEMS`.`quantity`,`ITEMS`.`item_name`,`ITEM_OPTIONS`.`option_name`,`ITEM_OPTIONS`.`price`
         FROM (`ORDERS`,`ORDERED_ITEMS`)
         LEFT JOIN `USER` AS `WRK` ON `WRK`.`user_id`=`ORDERS`.`worker_id` 
@@ -37,16 +37,14 @@ class Order_model extends CI_Model {
 //        $this->db->join("USER AS USR", "USR.user_id=ORDERS.user_id", "natural");
 //        $this->db->join("ITEMS", "ITEMS.item_id=ORDERED_ITEMS.item_id", "left");
 //        $this->db->where("`ORDERS`.`order_id`=`ORDERED_ITEMS`.`order_id`");
-        
+
         $response = $query->result_array();
-        
+
 //         foreach ($query->result_array() as $response)
 //            {
 //               return $response;
 //               
 //            }
-
-
 //        $response = $this->db->query->result_array();
 
         return $response;
@@ -70,6 +68,40 @@ class Order_model extends CI_Model {
 //
 //        return $this->session->userdata("selected_products");
 //    }
+
+    /**
+     * @return place list.
+     */
+    public function get_specific_orders($place_id = NULL) {
+        $sql = "
+        SELECT 
+            CONCAT(`WRK`.`name`,' ', `WRK`.`surname`,' ',`WRK`.`phone_number`) AS `WORKER`,
+            CONCAT(`USR`.`name`,' ', `USR`.`surname`,' ',`USR`.`phone_number`) AS `USER`,
+            `ORDERS`.*,`ORDERED_ITEMS`.`quantity`,
+            `ITEMS`.`item_name`,
+            `ITEM_OPTIONS`.`option_name`,
+            `ITEM_OPTIONS`.`price`
+        FROM (`ORDERS`,`ORDERED_ITEMS`)
+        LEFT JOIN `USER` AS `WRK` ON `WRK`.`user_id`=`ORDERS`.`worker_id` 
+        LEFT JOIN `USER` AS `USR` ON `USR`.`user_id`=`ORDERS`.`user_id` 
+        LEFT JOIN `ITEMS` ON `ITEMS`.`item_id`=`ORDERED_ITEMS`.`item_id` 
+        LEFT JOIN `ITEM_OPTIONS` ON `ITEM_OPTIONS`.`option_id`=`ORDERED_ITEMS`.`option_id` 
+        WHERE `ORDERS`.`order_id`=`ORDERED_ITEMS`.`order_id`";
+
+        // Add one more case if needed
+        if (isset($place_id)) {
+            $sql .= " WHERE `ORDERS`.`place_id` = " . $place_id;
+        }
+
+        $query = $this->db->query($sql);
+        $response = $query->result_array();
+        return $response;
+    }
+
 }
 
+//abstract class Order_state {
+//    const Pending = "pending";
+//    const Monday = 1;
+//}
 ?>
