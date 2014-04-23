@@ -107,6 +107,43 @@ class User_model extends CI_Model {
         return FALSE;
     }
 
+    public function get_users(){
+        $this->db->select();
+        $this->db->from("USER");
+        $users = $this->db->get()->result_array();
+
+        return $users;
+    }
+
+    public function update_user($id){
+        $user = array(
+            'name' => $this->input->post('name'),
+            'surname' => $this->input->post('surname'),
+            'phone_number' => $this->input->post('phone_number'),
+            'password' => $this->input->post('password'),
+            'username' => $this->input->post('username')
+        );
+
+        $this->db->where('user_id', $id);
+        $this->db->update('USER', $user);
+    }
+
+    public function get_one_user($id){
+
+        $this->db->select('user_id, name, surname, phone_number, password, username');
+        $this->db->from("USER");
+        $this->db->where('user_id', $id);
+
+        $user = $this->db->get()->result_array();
+        return $user;
+    }
+
+    public function delete_user($id){        
+        $this->db->where('user_id', $id);
+        $this->db->delete('USER');
+    }
+
+
 }
 
 ?>

@@ -79,11 +79,23 @@
                                 $this->session->userdata('nickname')); ?>"
         				    class="right top-menu-item">View profile</a>
         				
-                        <a href="<?php echo base_url('places/select/' .
-                                $this->session->userdata('nickname')); ?>"
-                            class="right top-menu-item">Choose a restaurant</a>
                         
+                            <?php if($this->User_model->is_manager()) { ?>
+                                    <a href="<?php echo base_url('user/register/manager'); ?>"
+                                    class="right top-menu-item">Create manager</a>
 
+                                    <a href="<?php echo base_url('user/register/worker'); ?>"
+                                    class="right top-menu-item">Create worker</a>
+
+                                    <a href="<?php echo base_url('user/register/user'); ?>"
+                                    class="right top-menu-item">Create user</a>
+
+                            <?php } else {?>
+                                    <a href="<?php echo base_url('places/select/' .
+                                    $this->session->userdata('nickname')); ?>"
+                                    class="right top-menu-item">Choose a restaurant</a>
+                        
+                            <?php } ?>
         				<?php 
         				} else { 
         				    ?>

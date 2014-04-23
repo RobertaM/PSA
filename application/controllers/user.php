@@ -8,6 +8,8 @@ class User extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
+        $this->load->helper('form');
+        $this->load->library('form_validation');
     }
 
     public function index() {
@@ -141,9 +143,8 @@ class User extends CI_Controller {
      * Register method placeholder
      * TODO: implement
      */
-    public function register(){
-        $this->load->helper('form');
-        $this->load->library('form_validation');
+    public function register($rol=''){
+
 
         $this->form_validation->set_rules('username', 'username', 'required');
         $this->form_validation->set_rules('password', 'password', 'required');
@@ -157,16 +158,60 @@ class User extends CI_Controller {
         $this->form_validation->set_rules('password', 'password', 'trim|required|min_length[4]|max_length[32]');
         $this->form_validation->set_rules('passconf', 'passconf', 'trim|required|matches[password]');
         $this->form_validation->set_rules('phone_number', 'phone_number', 'trim|required|min_length[9]');
-
-
+        
+        $role = array( "id" => $this->uri->segment(3));    
         if ($this->form_validation->run() === FALSE){ 
             $this->load->view('static/header');
-            $this->load->view('user/register/register_form');
+            $this->load->view('user/register/register_form', $role);
             $this->load->view('static/footer');
         } else {
-            $role = 'user';
+            $role = $this->uri->segment(3);
             $this->User_model->set_user($role);
         }   
+    }
+
+    public function edit_user($id=''){
+
+        $this->form_validation->set_rules('username', 'username', 'required');
+        $this->form_validation->set_rules('password', 'password', 'required');
+        $this->form_validation->set_rules('name', 'name', 'required');
+        $this->form_validation->set_rules('surname', 'surname', 'required');
+        $this->form_validation->set_rules('phone_number', 'phone_number', 'required');
+        $this->form_validation->set_rules('passconf', 'passconf', 'required');
+        
+                
+        $this->form_validation->set_rules('username', 'username', 'trim|required|min_length[4]');
+        $this->form_validation->set_rules('password', 'password', 'trim|required|min_length[4]|max_length[32]');
+        $this->form_validation->set_rules('passconf', 'passconf', 'trim|required|matches[password]');
+        $this->form_validation->set_rules('phone_number', 'phone_number', 'trim|required|min_length[9]');
+        
+        $id = $this->uri->segment(3);
+        $user = $this->User_model->get_one_user($id);
+        $user['id'] = $id;
+        var_dump($user);
+        if ($this->form_validation->run() === FALSE){ 
+            $this->load->view('static/header');
+            $this->load->view('user/register/edit_form', array(
+                "user"=>$user,
+                "id"=>$id
+                ));
+            $this->load->view('static/footer');
+        } else {
+            // $id = $this->uri->segment(3);
+            $this->User_model->update_user($id);
+        }
+    }
+
+    public function manage_users(){
+        $users['users'] = $this->User_model->get_users();
+
+        $this->load->view('static/header');
+        $this->load->view('user/view/manage_users', $users);
+        $this->load->view('static/footer');
+    }
+
+    public function delete_user($user_id=''){
+        $this->User_model->delete_user($user_id);
     }
 }
 ?>

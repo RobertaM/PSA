@@ -1,5 +1,7 @@
-<?php echo form_open('user/register'); ?>
-
+<?php echo form_open('user/register/'.$id);
+var_dump($user);
+?>
+	
 	<h5>Name</h5>
 		<input type="text" name="name" value="<?php echo set_value('name');?>" size="50" />
 
