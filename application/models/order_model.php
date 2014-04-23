@@ -90,18 +90,21 @@ class Order_model extends CI_Model {
 
         // Add one more case if needed
         if (isset($place_id)) {
-            $sql .= " WHERE `ORDERS`.`place_id` = " . $place_id;
+            $sql .= " AND `ORDERS`.`place_id` = " . $place_id;
         }
 
         $query = $this->db->query($sql);
         $response = $query->result_array();
+
         return $response;
     }
 
 }
 
 //abstract class Order_state {
+//
 //    const Pending = "pending";
 //    const Monday = 1;
+//
 //}
 ?>

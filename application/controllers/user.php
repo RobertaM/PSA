@@ -1,4 +1,5 @@
 <?php
+
 /**
  * User controller gives basic login/log-out/view functionality for all users.
  * @author Martynas Maciulevičius
@@ -28,16 +29,15 @@ class User extends CI_Controller {
             // Redirect
             //             $this->load->helper('url');
             redirect(base_url('user/view/' . $this->session->userdata('nickname')));
+            $this->redirect_after_login();
             return;
         }
-
-        // User is not logged in
 
         // Load form validation
         $this->load->helper('form');
         $this->load->library('form_validation');
         $this->form_validation->set_error_delimiters(
-            '<div class="input-error-message left">', '</div>'
+                '<div class="input-error-message left">', '</div>'
         );
 
         // Set validation rules
@@ -53,21 +53,19 @@ class User extends CI_Controller {
             $response = $this->User_model->check_password($this->input->post(null, TRUE));
             if ($response['status'] === TRUE) {
                 $this->User_model->set_logged_in($response['userdata']);
-                $this->load->helper('url');
-                redirect(base_url('user/view/' . $this->session->userdata('username')));
+                $this->redirect_after_login();
             } else {
                 $this->load->view('static/header', Array('title' => 'Log in'));
                 $this->load->view('user/login/bad_data');
             }
         }
         $this->load->view('static/footer');
-
     }
 
     /**
      * This method logs the user out.
      */
-    public function logout(){
+    public function logout() {
 
         // Remove user data from session
         $this->User_model->set_logged_out();
@@ -86,13 +84,13 @@ class User extends CI_Controller {
     public function view($username = NULL) {
 
         // Check for user eligibility
-        if(!$this->User_model->is_logged_in()){
+        if (!$this->User_model->is_logged_in()) {
             show_404(NULL, FALSE);
             return;
         }
 
         // View self or another user
-        if(!isset($username)){
+        if (!isset($username)) {
             $username = $this->session->userdata('user_data');
             $username = $username['username'];
         }
@@ -110,13 +108,13 @@ class User extends CI_Controller {
     public function view_profile($username = NULL) {
 
         // Check for user eligibility
-        if(!$this->User_model->is_logged_in()){
+        if (!$this->User_model->is_logged_in()) {
             show_404(NULL, FALSE);
             return;
         }
 
         // View self or another user
-        if(!isset($username)){
+        if (!isset($username)) {
             $username = $this->session->userdata('user_data');
             $username = $username['username'];
             $name = $this->session->userdata('user_data');
@@ -139,11 +137,11 @@ class User extends CI_Controller {
         ));
         $this->load->view('static/footer');
     }
+
     /**
-     * Register method placeholder
-     * TODO: implement
+     * Register 
      */
-    public function register($rol=''){
+    public function register($rol = '') {
 
 
         $this->form_validation->set_rules('username', 'username', 'required');
@@ -152,25 +150,25 @@ class User extends CI_Controller {
         $this->form_validation->set_rules('surname', 'surname', 'required');
         $this->form_validation->set_rules('phone_number', 'phone_number', 'required');
         $this->form_validation->set_rules('passconf', 'passconf', 'required');
-        
-                
+
+
         $this->form_validation->set_rules('username', 'username', 'trim|required|min_length[4]');
         $this->form_validation->set_rules('password', 'password', 'trim|required|min_length[4]|max_length[32]');
         $this->form_validation->set_rules('passconf', 'passconf', 'trim|required|matches[password]');
         $this->form_validation->set_rules('phone_number', 'phone_number', 'trim|required|min_length[9]');
-        
-        $role = array( "id" => $this->uri->segment(3));    
-        if ($this->form_validation->run() === FALSE){ 
+
+        $role = array("id" => $this->uri->segment(3));
+        if ($this->form_validation->run() === FALSE) {
             $this->load->view('static/header');
             $this->load->view('user/register/register_form', $role);
             $this->load->view('static/footer');
         } else {
             $role = $this->uri->segment(3);
             $this->User_model->set_user($role);
-        }   
+        }
     }
 
-    public function edit_user($id=''){
+    public function edit_user($id = '') {
 
         $this->form_validation->set_rules('username', 'username', 'required');
         $this->form_validation->set_rules('password', 'password', 'required');
@@ -178,23 +176,23 @@ class User extends CI_Controller {
         $this->form_validation->set_rules('surname', 'surname', 'required');
         $this->form_validation->set_rules('phone_number', 'phone_number', 'required');
         $this->form_validation->set_rules('passconf', 'passconf', 'required');
-        
-                
+
+
         $this->form_validation->set_rules('username', 'username', 'trim|required|min_length[4]');
         $this->form_validation->set_rules('password', 'password', 'trim|required|min_length[4]|max_length[32]');
         $this->form_validation->set_rules('passconf', 'passconf', 'trim|required|matches[password]');
         $this->form_validation->set_rules('phone_number', 'phone_number', 'trim|required|min_length[9]');
-        
+
         $id = $this->uri->segment(3);
         $user = $this->User_model->get_one_user($id);
         $user['id'] = $id;
         var_dump($user);
-        if ($this->form_validation->run() === FALSE){ 
+        if ($this->form_validation->run() === FALSE) {
             $this->load->view('static/header');
             $this->load->view('user/register/edit_form', array(
-                "user"=>$user,
-                "id"=>$id
-                ));
+                "user" => $user,
+                "id" => $id
+            ));
             $this->load->view('static/footer');
         } else {
             // $id = $this->uri->segment(3);
@@ -202,7 +200,7 @@ class User extends CI_Controller {
         }
     }
 
-    public function manage_users(){
+    public function manage_users() {
         $users['users'] = $this->User_model->get_users();
 
         $this->load->view('static/header');
@@ -210,8 +208,34 @@ class User extends CI_Controller {
         $this->load->view('static/footer');
     }
 
-    public function delete_user($user_id=''){
+    public function delete_user($user_id = '') {
         $this->User_model->delete_user($user_id);
     }
+
+    private function redirect_after_login() {
+
+        $this->load->helper('url');
+
+        $url;
+
+        switch ($this->User_model->get_user_status()) {
+
+            case "manager":
+            case "worker":
+                $url = 'orders/accept/';
+                break;
+
+            case "user":
+                $url = 'user/view/' . $this->session->userdata('username');
+                break;
+
+            default :
+                $url = 'user/login/';
+                break;
+        }
+        redirect(base_url($url));
+    }
+
 }
+
 ?>
