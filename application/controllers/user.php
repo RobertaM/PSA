@@ -186,7 +186,6 @@ class User extends CI_Controller {
         $id = $this->uri->segment(3);
         $user = $this->User_model->get_one_user($id);
         $user['id'] = $id;
-        var_dump($user);
         if ($this->form_validation->run() === FALSE) {
             $this->load->view('static/header');
             $this->load->view('user/register/edit_form', array(
