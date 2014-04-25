@@ -98,6 +98,30 @@ class Order_model extends CI_Model {
 
         return $response;
     }
+    
+    public function edit_orders() {
+        $sql = "
+        SELECT 
+            CONCAT(`WRK`.`name`,' ', `WRK`.`surname`,' ',`WRK`.`phone_number`) AS `WORKER`,
+            CONCAT(`USR`.`name`,' ', `USR`.`surname`,' ',`USR`.`phone_number`) AS `USER`,
+            `ORDERS`.*,`ORDERED_ITEMS`.`quantity`,
+            `ITEMS`.`item_name`,
+            `ITEM_OPTIONS`.`option_name`,
+            `ITEM_OPTIONS`.`price`
+        FROM (`ORDERS`,`ORDERED_ITEMS`)
+        LEFT JOIN `USER` AS `WRK` ON `WRK`.`user_id`=`ORDERS`.`worker_id` 
+        LEFT JOIN `USER` AS `USR` ON `USR`.`user_id`=`ORDERS`.`user_id` 
+        LEFT JOIN `ITEMS` ON `ITEMS`.`item_id`=`ORDERED_ITEMS`.`item_id` 
+        LEFT JOIN `ITEM_OPTIONS` ON `ITEM_OPTIONS`.`option_id`=`ORDERED_ITEMS`.`option_id` 
+        WHERE `ORDERS`.`order_id`=`ORDERED_ITEMS`.`order_id`";
+
+
+        $query = $this->db->query($sql);
+        $response = $query->result_array();
+
+        return $response;
+    }
+    
 
 }
 

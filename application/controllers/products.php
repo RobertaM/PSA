@@ -4,8 +4,10 @@ class Products extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
-
+        
         $this->load->model(Array('Product_model', 'Cart_model'));
+        $this->load->helper('form');
+        $this->load->library('form_validation');
     }
 
     public function index() {
@@ -60,6 +62,27 @@ class Products extends CI_Controller {
             // Redirect
             redirect(base_url("products/select/"), 'refresh');
         }
+    }
+    
+    public function add_product(){
+        
+        $this->form_validation->set_rules('item_name', 'item_name', 'trim|required|min_length[4]');
+        $filename = $data['upload_data']['file_name'];
+$file_data = file_get_contents($data['upload_data']['file_name']);
+
+$this->Product_model->set_prduct($filename, $file_data, 'ID1');
+
+        if ($this->form_validation->run() === FALSE){ 
+            $this->load->view('static/header');
+            $this->load->view('products/add_products');
+            $filename = $data['upload_data']['file_name'];
+//            $file_data = file_get_contents($data['upload_data']['file_name']);
+//
+//            $this->Product_model->set_prduct($filename, $file_data, 'ID1');
+            $this->load->view('static/footer');
+        } else {
+            $this->Product_model->set_product();
+        }   
     }
 
 }

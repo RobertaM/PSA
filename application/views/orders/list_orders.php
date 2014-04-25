@@ -12,7 +12,7 @@ $curr_id = null;
         <div class="place-item">
             <h5 class="place-item-title">
                 <?php // echo $products[$i]["item_name"]; ?>
-                <?php echo $products[$i]["item_name"]; ?>
+                <?php echo $products[$i]["item_name"].' '.$products[$i]["option_name"]; ?>
             </h5>
             <?php echo "Order number: ".$products[$i]["order_id"]. "<br />Status: ".$products[$i]["order_status"].'<br /> Quantity: '.$products[$i]["quantity"].'<br /> Worker info: '.$products[$i]["WORKER"].'<br /> Date received: '.$products[$i]["date_received"].'<br /> User info: '.$products[$i]["USER"]
                     

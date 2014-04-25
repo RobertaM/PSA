@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.10deb1
+-- version 4.1.6
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 22, 2014 at 10:31 PM
--- Server version: 5.5.35-1ubuntu1
--- PHP Version: 5.5.9-1ubuntu4
+-- Generation Time: Apr 23, 2014 at 05:10 
+-- Server version: 5.6.16
+-- PHP Version: 5.5.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -90,8 +90,8 @@ CREATE TABLE IF NOT EXISTS `ITEM_EXTRAS` (
 --
 
 INSERT INTO `ITEM_EXTRAS` (`extra_id`, `option_id`, `name`, `cost`) VALUES
-(1, 1, 'Papildomi pievagrybiai', 0.50),
-(3, 2, 'Papildomi pievagrybiai', 1.00);
+(1, 1, 'Papildomi pievagrybiai', '0.50'),
+(3, 2, 'Papildomi pievagrybiai', '1.00');
 
 -- --------------------------------------------------------
 
@@ -113,14 +113,14 @@ CREATE TABLE IF NOT EXISTS `ITEM_OPTIONS` (
 --
 
 INSERT INTO `ITEM_OPTIONS` (`option_id`, `item_id`, `option_name`, `price`) VALUES
-(1, 1, '30 cm', 8.99),
-(2, 1, '50 cm', 29.99),
-(3, 2, 'Maža porcija', 10.99),
-(5, 2, 'Didelė porcija', 15.00),
-(6, 3, '30 cm', 8.99),
-(7, 4, '50 cm', 29.99),
-(8, 3, '50 cm', 29.99),
-(9, 4, '30 cm', 8.99);
+(1, 1, '30 cm', '8.99'),
+(2, 1, '50 cm', '29.99'),
+(3, 2, 'Maža porcija', '10.99'),
+(5, 2, 'Didelė porcija', '15.00'),
+(6, 3, '30 cm', '8.99'),
+(7, 4, '50 cm', '29.99'),
+(8, 3, '50 cm', '29.99'),
+(9, 4, '30 cm', '8.99');
 
 -- --------------------------------------------------------
 
@@ -132,7 +132,10 @@ CREATE TABLE IF NOT EXISTS `ORDERED_ITEMS` (
   `order_id` int(11) NOT NULL,
   `item_id` int(11) NOT NULL,
   `option_id` int(11) NOT NULL,
-  `quantity` int(11) NOT NULL DEFAULT '1'
+  `quantity` int(11) NOT NULL DEFAULT '1',
+  KEY `order_id` (`order_id`),
+  KEY `item_id` (`item_id`),
+  KEY `option_id` (`option_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -143,11 +146,10 @@ INSERT INTO `ORDERED_ITEMS` (`order_id`, `item_id`, `option_id`, `quantity`) VAL
 (4, 2, 5, 7),
 (5, 2, 5, 2),
 (6, 2, 5, 4),
-(7, 1, 1, 3),
-(8, 1, 1, 13),
-(9, 1, 1, 3),
-(10, 1, 1, 5),
-(10, 1, 2, 1);
+(7, 1, 1, 1),
+(8, 1, 2, 1),
+(8, 3, 8, 1),
+(8, 4, 7, 1);
 
 -- --------------------------------------------------------
 
@@ -158,7 +160,7 @@ INSERT INTO `ORDERED_ITEMS` (`order_id`, `item_id`, `option_id`, `quantity`) VAL
 CREATE TABLE IF NOT EXISTS `ORDERS` (
   `order_id` int(11) NOT NULL AUTO_INCREMENT,
   `place_id` int(11) NOT NULL,
-  `worker_id` int(11) NOT NULL,
+  `worker_id` int(11) DEFAULT NULL,
   `user_id` int(11) NOT NULL,
   `order_status` varchar(11) COLLATE utf8_lithuanian_ci NOT NULL,
   `date_received` datetime NOT NULL,
@@ -170,20 +172,18 @@ CREATE TABLE IF NOT EXISTS `ORDERS` (
   KEY `order_id_3` (`order_id`),
   KEY `order_id_4` (`order_id`),
   KEY `order_id_5` (`order_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_lithuanian_ci AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_lithuanian_ci AUTO_INCREMENT=9 ;
 
 --
 -- Dumping data for table `ORDERS`
 --
 
 INSERT INTO `ORDERS` (`order_id`, `place_id`, `worker_id`, `user_id`, `order_status`, `date_received`, `date_seen`, `date_completed`) VALUES
-(4, 1, 0, 1, '0', '2014-04-21 19:39:36', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(5, 1, 0, 1, '0', '2014-04-21 19:51:26', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(6, 1, 0, 1, '0', '2014-04-21 19:51:48', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(7, 0, 0, 1, '0', '2014-04-21 20:09:54', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(8, 0, 0, 1, '0', '2014-04-21 20:10:13', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(9, 0, 0, 1, '0', '2014-04-21 22:02:24', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(10, 0, 0, 1, '0', '2014-04-21 22:33:16', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
+(4, 1, 333, 1, '0', '2014-04-21 19:39:36', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(5, 1, 999, 1, '0', '2014-04-21 19:51:26', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(6, 1, 999, 1, '0', '2014-04-21 19:51:48', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(7, 0, 999, 2, '0', '2014-04-22 18:02:09', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(8, 0, 999, 2, '0', '2014-04-22 21:49:47', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -249,7 +249,7 @@ CREATE TABLE IF NOT EXISTS `USER` (
   `username` varchar(25) COLLATE utf8_lithuanian_ci NOT NULL,
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `phone_number` (`phone_number`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_lithuanian_ci AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_lithuanian_ci AUTO_INCREMENT=1000 ;
 
 --
 -- Dumping data for table `USER`
@@ -257,7 +257,9 @@ CREATE TABLE IF NOT EXISTS `USER` (
 
 INSERT INTO `USER` (`name`, `surname`, `phone_number`, `user_id`, `role`, `password`, `username`) VALUES
 ('Martynas', 'Mac', 123, 1, 'user', 'a', 'nitmar'),
-('Nedas', 'Pekorius', 868217754, 2, 'user', 'pekorius', 'nedas');
+('Nedas', 'Pekorius', 868217754, 2, 'user', 'pekorius', 'nedas'),
+('Manager', 'SIPMUK', 12345678, 333, 'manager', 'manager', 'manager'),
+('Administraticus', 'Superficialis', 99999999, 999, 'admin', 'admin', 'admin');
 
 --
 -- Constraints for dumped tables
@@ -282,6 +284,14 @@ ALTER TABLE `ITEM_EXTRAS`
 --
 ALTER TABLE `ITEM_OPTIONS`
   ADD CONSTRAINT `ITEM_OPTIONS_ibfk_1` FOREIGN KEY (`item_id`) REFERENCES `ITEMS` (`item_id`);
+
+--
+-- Constraints for table `ORDERED_ITEMS`
+--
+ALTER TABLE `ORDERED_ITEMS`
+  ADD CONSTRAINT `ORDERED_ITEMS_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `ORDERS` (`order_id`),
+  ADD CONSTRAINT `ORDERED_ITEMS_ibfk_2` FOREIGN KEY (`item_id`) REFERENCES `ITEMS` (`item_id`),
+  ADD CONSTRAINT `ORDERED_ITEMS_ibfk_3` FOREIGN KEY (`option_id`) REFERENCES `ITEM_OPTIONS` (`option_id`);
 
 --
 -- Constraints for table `PLACE_ITEMS`

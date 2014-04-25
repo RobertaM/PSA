@@ -48,10 +48,10 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = 'localhost';
-$db['default']['username'] = 'psa_website_account';
-$db['default']['password'] = 'rWYvVBW8BjtrFPCG';
-$db['default']['database'] = 'gallery_db';
+$db['default']['hostname'] = 'sql2.freemysqlhosting.net';
+$db['default']['username'] = 'sql237845';
+$db['default']['password'] = 'bN2*jK5!';
+$db['default']['database'] = 'sql237845';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;
