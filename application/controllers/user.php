@@ -225,7 +225,8 @@ class User extends CI_Controller {
                 break;
 
             case "user":
-                $url = 'user/view/' . $this->session->userdata('username');
+                //$url = 'user/view/' . $this->session->userdata('username');
+                $url = 'places/select';
                 break;
 
             default :
