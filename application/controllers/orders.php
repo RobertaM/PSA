@@ -43,6 +43,63 @@ class Orders extends CI_Controller {
 //            // Redirect
 //            redirect(base_url("products/select/"), 'refresh');
     }
+    
+    public function get_specific_orders() {
+
+        // Get data from database
+        $products = $this->Order_model->get_specific_orders(1);
+
+        // Check if products are not returned
+        if ($products === FALSE) {
+            $message = "No Orders awailable.";
+
+            $this->load->view("static/header", Array("title" => $message));
+            $this->load->view("static/show_message", Array("message" => $message));
+            $this->load->view("static/footer");
+            return;
+        }
+
+        // Load headers and form itself
+        $this->load->view("static/header", Array(
+            "title" => "Orders"));
+
+        $this->load->view("orders/list_orders", Array(
+            'products' => $products));
+        $this->load->view("static/footer");
+
+//
+//            // Redirect
+//            redirect(base_url("products/select/"), 'refresh');
+    }
+    
+     public function edit_orders() {
+
+        // Get data from database
+        $products = $this->Order_model->edit_orders();
+
+        // Check if products are not returned
+        if ($products === FALSE) {
+            $message = "No Orders awailable.";
+
+            $this->load->view("static/header", Array("title" => $message));
+            $this->load->view("static/show_message", Array("message" => $message));
+            $this->load->view("static/footer");
+            return;
+        }
+
+        // Load headers and form itself
+        $this->load->view("static/header", Array(
+            "title" => "Orders"));
+
+        $this->load->view("orders/list_orders", Array(
+            'products' => $products));
+        $this->load->view("static/footer");
+
+//
+//            // Redirect
+//            redirect(base_url("products/select/"), 'refresh');
+    }
+
 
     public function accept() {
         if (!$this->User_model->is_worker()) {
