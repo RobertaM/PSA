@@ -14,7 +14,7 @@
                     See Terms of Service for details(if those exist).
                 </p>
                 <p class='blank-list-style'>
-                    mm 2013
+                    „Sipmuk“ PSA 2014
                 </p>
             </footer>
         </div>
