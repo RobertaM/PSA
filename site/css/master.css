@@ -303,6 +303,17 @@ ul.multicolumn li {
 .product-image {
     max-width: 270px;
 }
+.ellipsize {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.text-left {
+    text-align: left;
+}
+.text-right {
+    text-align: right;
+}
 /* =Footer
 -----------------------------------------------------------------------------*/
 #footer-sep {

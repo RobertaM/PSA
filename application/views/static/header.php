@@ -120,4 +120,4 @@
                     </div>
 
                     <div class="make-some-space "></div>
-        		<div class="fivesixth" id="main-content">
+        		<div id="main-content">
