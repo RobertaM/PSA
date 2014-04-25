@@ -43,7 +43,7 @@ class Orders extends CI_Controller {
 //            // Redirect
 //            redirect(base_url("products/select/"), 'refresh');
     }
-    
+
     public function get_specific_orders() {
 
         // Get data from database
@@ -71,8 +71,8 @@ class Orders extends CI_Controller {
 //            // Redirect
 //            redirect(base_url("products/select/"), 'refresh');
     }
-    
-     public function edit_orders() {
+
+    public function edit_orders() {
 
         // Get data from database
         $products = $this->Order_model->edit_orders();
@@ -100,12 +100,13 @@ class Orders extends CI_Controller {
 //            redirect(base_url("products/select/"), 'refresh');
     }
 
-
-    public function accept() {
+    public function accept($dump = false) {
+        // Authorisation
         if (!$this->User_model->is_worker()) {
             show_404();
         }
 
+        // Load models and data
         $this->load->model(array("Restaurant_model", "Order_model"));
         $restaurant = $this->Restaurant_model->get_worker_restaurants(
                 $this->User_model->get_id());
@@ -121,19 +122,30 @@ class Orders extends CI_Controller {
             ));
             $this->load->view('static/footer');
             return;
+        } else {
+            $restaurant = $restaurant[0];
         }
 
-        $restaurant = $restaurant[0];
-        // TODO LATER $this->User_model->set_worker_restaurant($restaurants);
+        // Save data to session for later usage TODO: is it needed?
+        $this->User_model->set_worker_restaurant($restaurant);
+
         // Get orders
         $orders = $this->Order_model->get_specific_orders($restaurant["place_id"]);
 
+        // Load interface
+        $title = "Accept orders";
+        $this->load->view("static/header", array("title" => $title));
+        $this->load->view("orders/design/orders_accept");
+        $this->load->view("static/footer");
+
+        if($dump != null) {
         echo "<pre>";
-        var_dump($restaurant);
-        echo "<br/>";
-        echo "<br/>";
-        var_dump($orders);
-        echo "</pre>";
+            var_dump($restaurant);
+            echo "<br/>";
+            echo "<br/>";
+            var_dump($orders);
+            echo "</pre>";
+        }
     }
 
 }
