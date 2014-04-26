@@ -50,16 +50,21 @@ class Product_model extends CI_Model {
         return $this->session->userdata("selected_products");
     }
 
-    public function set_product($filename, $filedata, $post_id){
+    public function set_product() {
+
+        $item = array(
+            'item_name' => $this->input->post('item_name'),
+            'item_image' => $this->input->post('item_image')
+        );
         
-        echo $this->input->post('user_image');
-       
-         $this->db->query("INSERT INTO ITEMS SET file_data='$filedata', filename='$filename', postid='$post_id'");
-        
-        $this->Product_model->set_prduct($filename, $file_data, 'ID1');
-        
+        echo $item['item_image'].'pavyko';
+//        $this->db->set( $item );
+//        $this->db->set( 'cover', "'" . addslashes( $item['cover'] ) . "'", FALSE );
+//        $this->db->insert( $this->ITEMS ); 
 //        $response = $query->result_array();
 //        return $response;
+    }
+
 }
-}
+
 ?>
