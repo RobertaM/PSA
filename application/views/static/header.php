@@ -40,84 +40,120 @@
                 echo $title;
             ?>
             </title>
-            
+
             <meta charset="utf-8">
-            
+
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            
+
             <link rel="stylesheet" type="text/css"
             	href="<?php echo base_url('css/kube.css') ?>" />
             <link rel="stylesheet" type="text/css"
             	href="<?php echo base_url('css/master.css') ?>" />
-            
+
             <script type="text/javascript"
             	src="/PSA/site/js/jquery.min.js"></script>
             <script type="text/javascript"
             	src="<?php echo base_url('js/scripts.js') ?>"></script>
-            
+            <?php
+            if(isset($scripts) && is_array($scripts)) {
+                foreach ($scripts as $script) {
+                    if(is_string($script)) { ?>
+                        <script type="text/javascript"
+                        src="<?php echo base_url('js/' . $script) ?>"></script><?php
+                    }
+                }
+            } ?>
+
             <!--[if lt IE 9]>
                     <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
                     <![endif]-->
-            
+
         </head>
         <body>
-        	<header>
-        		<div id="top-bar">
-        			<div id="top-bar-wrapper">
-        			
-        				<a href="<?php echo base_url() ?>" 
-        				    class="left top-menu-item">Home</a>
-        			
-        				<?php
-        				if ($this->User_model->is_logged_in()) {
-        				    ?>
-        			
-        				<a href="<?php echo base_url('user/logout'); ?>"
-        					class="right top-menu-item">Log out</a>
-        					
-        				<a href="<?php echo base_url('user/view_profile/' .
-                                $this->session->userdata('nickname')); ?>"
-        				    class="right top-menu-item">View profile</a>
-        				
-                        
-                            <?php if($this->User_model->is_manager()) { ?>
-                                    <a href="<?php echo base_url('user/register/manager'); ?>"
-                                    class="right top-menu-item">Create manager</a>
+            <header>
+                <div id="top-bar">
+                    <div id="top-bar-wrapper"><?php
 
-                                    <a href="<?php echo base_url('user/register/worker'); ?>"
-                                    class="right top-menu-item">Create worker</a>
+                        $left_buttons = array(
+                            array(
+                                "title" => "Home",
+                                "link" => ""
+                            )
+                        );
+                        $right_buttons = array();
 
-                                    <a href="<?php echo base_url('user/register/user'); ?>"
-                                    class="right top-menu-item">Create user</a>
+                        // Add buttons if conditions are met
+                        if($this->User_model->is_logged_in()) {
+                            array_push($right_buttons, array(
+                                "title" => "Log out",
+                                "link" => "user/logout"
+                            ));
+                            array_push($right_buttons, array(
+                                "title" => "View profile",
+                                "link" => 'user/view/' . $this->User_model->get_username()
+                            ));
+                        } else {
+                            array_push($right_buttons, array(
+                                "title" => "Register",
+                                "link" => "user/register"
+                            ));
+                            array_push($right_buttons, array(
+                                "title" => "Log in",
+                                "link" => "user/login"
+                            ));
+                        }
 
-                            <?php } else {?>
-                                    <a href="<?php echo base_url('places/select/' .
-                                    $this->session->userdata('nickname')); ?>"
-                                    class="right top-menu-item">Choose a restaurant</a>
-                        
-                            <?php } ?>
-        				<?php 
-        				} else { 
-        				    ?>
-        				
-                        <a href="<?php echo base_url('user/register'); ?>" 
-                            class="right top-menu-item">Register</a>
-        				
-        				<a href="<?php echo base_url('user/login'); ?>"
-                            class="right top-menu-item">Log in</a>
+                        if($this->User_model->is_user()) {
                             
-        				<?php
-        				}
-        				?>
-        			</div>
-        		</div>
-        	</header>
-        
-        	<div id="page">
-                    <div id="breadcrumb" class="line-sep-bottom">
-                        <?php echo set_breadcrumb();
-                        ?>
-                    </div>
+                            array_push($right_buttons, array(
+                                "title" => "Choose a restaurant",
+                                "link" => "places/select/"
+                                //. $this->session->userdata('nickname')
+                            ));
+                        } else
+                        // Check if manager
+                        // This function checks if user is logged in too
+                        if($this->User_model->is_manager()) {
+                            array_push($right_buttons, array(
+                                "title" => "Create manager",
+                                "link" => "user/register/manager"
+                            ));
+                            array_push($right_buttons, array(
+                                "title" => "Create worker",
+                                "link" => "user/register/worker"
+                            ));
+                            array_push($right_buttons, array(
+                                "title" => "Create user",
+                                "link" => "user/register/user"
+                            ));
+                        }
 
-                    <div class="make-some-space "></div>
-        		<div id="main-content">
+                        // Echo all the given arrays
+                        // Left first
+                        foreach ($left_buttons as $button) {
+                            ?><a 
+                                href="<?php echo base_url($button["link"]) ?>"
+                                class="left top-menu-item"><?php 
+                                echo $button["title"];
+                            ?></a><?php
+                        }
+                        // Right one
+                        foreach ($right_buttons as $button) {
+                            ?><a 
+                                href="<?php echo base_url($button["link"]) ?>"
+                                class="right top-menu-item"><?php 
+                                echo $button["title"];
+                            ?></a><?php
+                        } ?>
+                    </div>
+                </div>
+            </header>
+
+            <div id="page">
+                <div id="breadcrumb" class="line-sep-bottom">
+                    <?php echo set_breadcrumb();
+                    ?>
+                </div>
+
+                <div class="make-some-space "></div>
+                    <div id="main-content">
