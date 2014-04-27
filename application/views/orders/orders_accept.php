@@ -8,9 +8,9 @@
         if ($orders[$i]["order_id"] !== $last_id) {
             ?>
             <div class="place-item btn btn-active btn-full btn-square default-cursor">
-                <div>
-                    <div class="fifth left ellipsize"><h6><?php echo $orders[$i]["date_received"] ?></h6></div>
-                    <div class="threefifth left ellipsize"><h6><?php echo "Order id: " . $orders[$i]["order_id"] ?></h6></div>
+                <div class="max-element-height">
+                    <div class="fifth left ellipsize"><h5><?php echo $orders[$i]["date_received"] ?></h5></div>
+                    <div class="threefifth left ellipsize"><h5><?php echo "Order id: " . $orders[$i]["order_id"] ?></h5></div>
                     <div id="status-select-<?php echo $orders[$i]["order_id"]; ?>" class="fifth right">
                         <label for="order-state">
                             Change order status
@@ -23,8 +23,8 @@
                                         echo "selected ";
                                     }
                                     ?>name="<?php echo $state["name"]; ?>"><?php
-                                        echo $state["display_name"]
-                                        ?></option><?php } ?>
+                                            echo $state["display_name"]
+                                            ?></option><?php } ?>
                             </select>
                         </label>
                     </div>
