@@ -100,6 +100,9 @@ class Orders extends CI_Controller {
 //            redirect(base_url("products/select/"), 'refresh');
     }
 
+    /**
+     * Order accept method. Used by staff.
+     */
     public function accept() {
         // Authorisation
         if (!$this->User_model->is_worker()) {
@@ -121,7 +124,7 @@ class Orders extends CI_Controller {
                 "detailed_message" => "Contact your manager."
             ));
             $this->load->view('static/footer');
-            return;
+            exit();
         } else {
             $restaurant = $restaurant[0];
         }
@@ -146,6 +149,7 @@ class Orders extends CI_Controller {
     }
 
     /**
+     * Change order status and receive json message.
      * 
      * @param int $orderId Order to change
      * @param string $status Status to change into.
@@ -166,10 +170,6 @@ class Orders extends CI_Controller {
         } else {
             send_json_message("Error: Something went wrong!");
         }
-
-//        $this->Order_model->get_order_status()
-//        
-//        send_json_result("end");
     }
 
 }
