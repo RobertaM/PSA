@@ -95,8 +95,8 @@ class Cart_model extends CI_Model {
         $this->db->insert("ORDERS", array(
             "place_id" => $place_id,
             "user_id" => $this->User_model->get_id(),
-            "date_received" => date("Y-m-d H:i:s"),
-            "order_status" => 0
+            "date_received" => date("Y-m-d H:i:s")
+//            , "order_status" => 0
         ));
 
         // Construct batch query
