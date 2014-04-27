@@ -241,8 +241,6 @@ ul.multicolumn li {
 
 /* Place list view */
 .place-item {
-
-
 }
 
 .place-item-checkbox {
@@ -313,6 +311,12 @@ ul.multicolumn li {
 }
 .text-right {
     text-align: right;
+}
+.default-cursor {
+    cursor: initial;
+}
+.status-select-wait {
+    display: none;
 }
 /* =Footer
 -----------------------------------------------------------------------------*/

@@ -110,6 +110,11 @@
                                 "link" => "places/select/"
                                 //. $this->session->userdata('nickname')
                             ));
+                        } else if ($this->User_model->is_worker()) {
+                            array_push($right_buttons, array(
+                                "title" => "View received orders",
+                                "link" => "orders/accept"
+                            ));
                         } else
                         // Check if manager
                         // This function checks if user is logged in too
