@@ -96,14 +96,7 @@ class User_model extends CI_Model {
      * @return boolean TRUE if user is a manager.
      */
     public function is_manager() {
-
-        $user_data = $this->session->userdata('user_data');
-
-        if ($this->session->userdata('user_logged_in_status') === TRUE &&
-                $user_data['role'] === "manager") {
-            return TRUE;
-        }
-        return FALSE;
+        return $this->get_user_status() === "manager";
     }
 
     /**
@@ -186,7 +179,18 @@ class User_model extends CI_Model {
      * Saves restaurant to session
      */
     public function set_worker_restaurant($restaurant_data) {
-        
+        $this->session->set_userdata(Array(
+            'assigned_restaurant_data' => $restaurant_data
+        ));
+    }
+
+    /** @return String containing user name */
+    public function get_username() {
+        if ($this->is_logged_in()) {
+            return $this->session->userdata('user_data')['username'];
+        } else {
+            return NULL;
+        }
     }
 
 }
