@@ -49,7 +49,7 @@ for ($i = 0; $i < $products_length; $i++) {
                 </div>
             </div>
             <div class="half">
-                <img class="product-image" src="data:image/jpeg;base64,<?php echo base64_encode($products[$i]["image"]) ?>">
+                <img class="product-image" src="<?php echo $products[$i]["image"] ?>">
             </div>
             <div class="clear"></div>
         </div>
