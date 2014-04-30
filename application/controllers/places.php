@@ -22,6 +22,12 @@ class Places extends CI_Controller {
      * select a place.
      */
     public function select() {
+        // Get role
+        $is_manager = $this->User_model->is_manager();
+        $is_user = $this->User_model->is_user();
+        if (!($is_manager || $is_user)) {
+            show_404();
+        }
 
         // Get data from database
         $places = $this->Place_model->get_places();
@@ -65,9 +71,19 @@ class Places extends CI_Controller {
                     )
             );
 
+            $url = "products/select";
+
+            // If manager
+            if ($is_manager) {
+                $url = "test";
+            }
             // Redirect
-            redirect(base_url("products/select"), 'refresh');
+            redirect(base_url($url), 'refresh');
         }
+    }
+
+    private function select_manager() {
+        echo "mgr";
     }
 
 }

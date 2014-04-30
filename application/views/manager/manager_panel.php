@@ -10,6 +10,10 @@
             "url" => "restaurant/manageRestaurants"
         ),
         array(
+            "title" => "Manage orders",
+            "url" => "places/select"
+        ),
+        array(
             "type" => "separator"
         ),
         array(

@@ -105,7 +105,7 @@ class Orders extends CI_Controller {
      */
     public function accept() {
         // Authorisation
-        if (!$this->User_model->is_worker()) {
+        if (!($this->User_model->is_worker() || $this->User_model->is_manager())) {
             show_404();
         }
 
