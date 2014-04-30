@@ -1,44 +1,52 @@
+<h3><?php echo $title; ?></h3>
 <div>
     <?php
     $buttons = array(
         array(
-            "title" => "Administrate users",
-            "url" => "user/administrate"
+            "title" => "Edit information",
+            array(
+                "title" => "Administrate users",
+                "url" => "user/administrate"
+            ),
+            array(
+                "title" => "Manage restaurants",
+                "url" => "restaurant/manageRestaurants"
+            ),
+            array(
+                "title" => "Add product",
+                "url" => "product/add"
+            )
         ),
         array(
-            "title" => "Manage restaurants",
-            "url" => "restaurant/manageRestaurants"
-        ),
-        array(
-            "title" => "Manage orders",
-            "url" => "places/select"
-        ),
-        array(
-            "type" => "separator"
-        ),
-        array(
-            "title" => "Create manager",
-            "url" => "user/register/manager"
-        ),
-        array(
-            "title" => "Create worker",
-            "url" => "user/register/worker"
-        ),
-        array(
-            "title" => "Create user",
-            "url" => "user/register/user"
+            "title" => "Create users",
+            array(
+                "title" => "Create manager",
+                "url" => "user/register/manager"
+            ),
+            array(
+                "title" => "Create worker",
+                "url" => "user/register/worker"
+            ),
+            array(
+                "title" => "Create user",
+                "url" => "user/register/user"
+            )
         )
     );
-    ?><div><?php
-        foreach ($buttons as $item) {
-            if (!isset($item["type"]) || $item["type"] != "separator") {
-                ?><a class="btn" href="<?php echo base_url($item["url"]); ?>"><?php echo $item["title"]; ?></a>
-                <?php
-            } else {
-                ?></div>
-            <div><?php
+    foreach ($buttons as $item) {
+        ?><div class="half"><?php
+        foreach ($item as $link) {
+            if (is_string($link)) {
+                ?><h5><?php
+                echo $link;
+                ?></h5><?php
+                continue;
             }
-        }
-        ?>
-    </div>
+            ?><div class="make-little-space">
+                    <a class="btn" href="<?php echo base_url($link["url"]); ?>"><?php echo $link["title"]; ?></a>
+                </div><?php
+            }
+            ?></div><?php
+    }
+    ?>
 </div>
