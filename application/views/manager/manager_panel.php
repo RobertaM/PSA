@@ -14,7 +14,7 @@
             ),
             array(
                 "title" => "Add product",
-                "url" => "product/add"
+                "url" => "products/add"
             )
         ),
         array(
