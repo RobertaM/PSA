@@ -6,6 +6,13 @@
             "url" => "user/administrate"
         ),
         array(
+            "title" => "Manage restaurants",
+            "url" => "restaurant/manageRestaurants"
+        ),
+        array(
+            "type" => "separator"
+        ),
+        array(
             "title" => "Create manager",
             "url" => "user/register/manager"
         ),
@@ -18,8 +25,16 @@
             "url" => "user/register/user"
         )
     );
-    foreach ($buttons as $item) {
-        ?><a class="btn" href="<?php echo base_url($item["url"]); ?>"><?php echo $item["title"]; ?></a>
-    <?php }
-    ?>
+    ?><div><?php
+        foreach ($buttons as $item) {
+            if (!isset($item["type"]) || $item["type"] != "separator") {
+                ?><a class="btn" href="<?php echo base_url($item["url"]); ?>"><?php echo $item["title"]; ?></a>
+                <?php
+            } else {
+                ?></div>
+            <div><?php
+            }
+        }
+        ?>
+    </div>
 </div>
