@@ -278,7 +278,6 @@ ul.multicolumn li {
 }
 
 .delete{
-    float: right;
     display: block;
     text-decoration: none;
     color:#db0000;
@@ -287,13 +286,13 @@ ul.multicolumn li {
     color:#0066CC;
 }
 
-.change{
-    float: right;
+.edit{
+    margin-left: 1%;
     display: block;
     text-decoration: none;
     color:#169112;
 }
-.change:hover.button{
+.edit:hover.button{
     color:#0066CC;
 }
 
