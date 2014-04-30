@@ -64,7 +64,7 @@ class Products extends CI_Controller {
         }
     }
     
-    public function add_product(){
+    public function add(){
         
         $this->form_validation->set_rules('item_name', 'item_image', 'trim|required|min_length[4]');
         $categories = $this->Product_model->get_categories();
