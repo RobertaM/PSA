@@ -1,4 +1,4 @@
-<?php echo form_open('products/add_product');
+<?php echo form_open('products/add');
 ?>
 
 <h5>Item name:</h5>
