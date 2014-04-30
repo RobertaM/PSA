@@ -62,7 +62,7 @@ class Product_model extends CI_Model {
         $item = array(
             'item_name' => $this->input->post('item_name'),
             'image' => $this->input->post('item_image'),
-            'cat_id' => $this->input->post('cat_id')
+            'cat_id' => $this->input->post('cat')
                 );
          $this->db->insert("ITEMS", $item);
 

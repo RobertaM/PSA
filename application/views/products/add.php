@@ -9,7 +9,9 @@
     <input name="item_image" value="<?php echo set_value('item_image'); ?>" type="text" size="100" />
     <br><br>
     <h5>Categorie id:</h5>
-     <select id="cat" name="inputInfo" >
+    
+    
+     <select id="cat" name="cat" >
       <?php
       $products_length = count($categories);
 $prev_id = null;

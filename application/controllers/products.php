@@ -70,11 +70,13 @@ class Products extends CI_Controller {
         $categories = $this->Product_model->get_categories();
         if ($this->form_validation->run() === FALSE){ 
             $this->load->view('static/header');
-            $this->load->view('products/add_products',Array('categories' => $categories) );
+            $this->load->view('products/add',Array('categories' => $categories) );
 //           
             $this->load->view('static/footer');
         } else {
             $this->Product_model->set_product();
+
+            redirect(base_url("products/add"), 'refresh');
         }   
     }
 
