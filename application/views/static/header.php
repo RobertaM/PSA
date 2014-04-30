@@ -120,16 +120,8 @@
                         // This function checks if user is logged in too
                         if($this->User_model->is_manager()) {
                             array_push($right_buttons, array(
-                                "title" => "Create manager",
-                                "link" => "user/register/manager"
-                            ));
-                            array_push($right_buttons, array(
-                                "title" => "Create worker",
-                                "link" => "user/register/worker"
-                            ));
-                            array_push($right_buttons, array(
-                                "title" => "Create user",
-                                "link" => "user/register/user"
+                                "title" => "Manager's panel",
+                                "link" => "manager/panel"
                             ));
                         }
 
