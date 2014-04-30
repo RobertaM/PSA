@@ -24,10 +24,17 @@ class Product_model extends CI_Model {
         $this->db->join("ITEMS", "ITEMS.item_id = PLACE_ITEMS.item_id", "left");
         $this->db->join("CATEGORIES", "CATEGORIES.cat_id = ITEMS.cat_id", "left");
         $this->db->join("ITEM_OPTIONS", "ITEM_OPTIONS.item_id = ITEMS.item_id", "left");
-        $this->db->order_by('ITEMS.item_type asc, ITEM_OPTIONS.item_id asc,ITEM_OPTIONS.option_name asc');
+        $this->db->order_by('ITEM_OPTIONS.item_id asc,ITEM_OPTIONS.option_name asc');
         $this->db->where("PLACES.place_id = " . $place_id);
         $response = $this->db->get()->result_array();
 
+        return $response;
+    }
+    public function get_categories(){
+        
+        $this->db->select('CATEGORIES.cat_id,CATEGORIES.cat_name');
+        $this->db->from('CATEGORIES');
+        $response = $this->db->get()->result_array();
         return $response;
     }
 
@@ -54,16 +61,12 @@ class Product_model extends CI_Model {
 
         $item = array(
             'item_name' => $this->input->post('item_name'),
-            'item_image' => $this->input->post('item_image')
-        );
-        
-        echo $item['item_image'].'pavyko';
-//        $this->db->set( $item );
-//        $this->db->set( 'cover', "'" . addslashes( $item['cover'] ) . "'", FALSE );
-//        $this->db->insert( $this->ITEMS ); 
-//        $response = $query->result_array();
-//        return $response;
-    }
+            'image' => $this->input->post('item_image'),
+            'cat_id' => $this->input->post('cat_id')
+                );
+         $this->db->insert("ITEMS", $item);
+
+}
 
 }
 
