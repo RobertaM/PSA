@@ -51,23 +51,23 @@ class Places extends CI_Controller {
             );
 
             $this->load->view("static/footer");
-            exit();
+        } else {
+
+            // Get selected radio button index from session if it exists
+            $post_array = $this->input->post(null, TRUE);
+            $selected_button = $post_array["place-radio"];
+
+            // Load all the submitted data into session variable
+            $this->Place_model->temporarily_save_selected_place(
+                    array(
+                        "id" => $selected_button,
+                        "name" => $places[$selected_button]["name"]
+                    )
+            );
+
+            // Redirect
+            redirect(base_url("products/select"), 'refresh');
         }
-
-        // Get selected radio button index from session if it exists
-        $post_array = $this->input->post(null, TRUE);
-        $selected_button = $post_array["place-radio"];
-
-        // Load all the submitted data into session variable
-        $this->Place_model->temporarily_save_selected_place(
-                array(
-                    "id" => $selected_button,
-                    "name" => $places[$selected_button]["name"]
-                )
-        );
-
-        // Redirect
-        redirect(base_url("products/select"), 'refresh');
     }
 
 }
