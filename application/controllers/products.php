@@ -67,12 +67,11 @@ class Products extends CI_Controller {
     public function add_product(){
         
         $this->form_validation->set_rules('item_name', 'item_image', 'trim|required|min_length[4]');
-
+        $categories = $this->Product_model->get_categories();
         if ($this->form_validation->run() === FALSE){ 
             $this->load->view('static/header');
-            $this->load->view('products/add_products');
-//            $filename = $data['upload_data']['file_name'];
-
+            $this->load->view('products/add_products',Array('categories' => $categories) );
+//           
             $this->load->view('static/footer');
         } else {
             $this->Product_model->set_product();

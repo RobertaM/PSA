@@ -88,6 +88,24 @@ ul.multicolumn li{
 .make-some-space{
     margin-bottom: 1.5em;
 }
+
+.delete{
+display: block;
+text-decoration: none;
+color:#db0000;
+}
+.delete:hover.button{
+color:#0066CC;
+}
+
+.edit{
+display: block;
+text-decoration: none;
+color:#169112;
+}
+.edit:hover.button{
+color:#0066CC;
+}
 /* =Footer
 -----------------------------------------------------------------------------*/
 #footer-sep{
