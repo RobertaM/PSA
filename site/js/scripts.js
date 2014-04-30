@@ -38,6 +38,8 @@ function submitOrders() {
 
         // Request callback
         console.log(jsonResult);
+        
+     
     });
 }
 

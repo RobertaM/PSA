@@ -101,6 +101,7 @@ class Cart extends CI_Controller {
                     "success" => $success,
                     "message" => $message
         )));
+        
     }
 
     /**

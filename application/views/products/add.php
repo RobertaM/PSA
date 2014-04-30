@@ -8,7 +8,7 @@
         <h5>Path to image:</h5>
     <input name="item_image" value="<?php echo set_value('item_image'); ?>" type="text" size="100" />
     <br><br>
-    <h5>Categorie id:</h5>
+    <h5>Category:</h5>
     
     
      <select id="cat" name="cat" >

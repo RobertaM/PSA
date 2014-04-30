@@ -61,6 +61,7 @@ class Products extends CI_Controller {
 
             // Redirect
             redirect(base_url("products/select/"), 'refresh');
+            
         }
     }
     
@@ -69,17 +70,18 @@ class Products extends CI_Controller {
         $this->form_validation->set_rules('item_name', 'item_image', 'trim|required|min_length[4]');
         $categories = $this->Product_model->get_categories();
         if ($this->form_validation->run() === FALSE){ 
-            $this->load->view('static/header');
+            $this->load->view('static/header',Array(
+                "title" => "Add products"));
             $this->load->view('products/add',Array('categories' => $categories) );
 //           
             $this->load->view('static/footer');
         } else {
             $this->Product_model->set_product();
-
+            echo '<script>alert("You Have Successfully added new item!");</script>';
             redirect(base_url("products/add"), 'refresh');
         }   
     }
-
+    
 }
 
 ?>
