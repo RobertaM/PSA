@@ -318,6 +318,9 @@ ul.multicolumn li {
 .status-select-wait {
     display: none;
 }
+.hidden{
+    display: none;
+}
 /* =Footer
 -----------------------------------------------------------------------------*/
 #footer-sep {

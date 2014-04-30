@@ -219,14 +219,17 @@ class User extends CI_Controller {
 
         switch ($this->User_model->get_user_status()) {
 
-            case "manager":
+            case "user":
+                //$url = 'user/view/' . $this->session->userdata('username');
+                $url = 'places/select';
+                break;
+
             case "worker":
                 $url = 'orders/accept/';
                 break;
 
-            case "user":
-                //$url = 'user/view/' . $this->session->userdata('username');
-                $url = 'places/select';
+            case "manager":
+                $url = 'manager/panel';
                 break;
 
             default :
@@ -234,6 +237,52 @@ class User extends CI_Controller {
                 break;
         }
         redirect(base_url($url));
+    }
+
+    public function administrate() {
+        if (!$this->User_model->is_manager()) {
+            show_404();
+        }
+
+        $title = "User management";
+        $this->load->model("Place_model");
+        $places = $this->Place_model->get_places();
+
+        $this->load->view("static/header", array(
+            "title" => $title,
+            "scripts" => array(
+                "workerScripts.js"
+        )));
+        $this->load->view("user/administrate/administrate_users", array(
+            "places" => $places
+        ));
+        $this->load->view("static/footer");
+    }
+
+    public function setPrivileges($user_id, $privilege) {
+        if (!$this->User_model->is_manager()) {
+            show_404();
+        }
+
+        // Set db
+        $this->User_model->set_user_class($user_id, $privilege);
+
+        // Send callback
+        $this->load->helper("json_helper");
+        send_json_message("too lazy to implement securely", TRUE);
+    }
+
+    public function setPlace($user_id, $place_id) {
+        if (!$this->User_model->is_manager()) {
+            show_404();
+        }
+
+        // Set db place id
+        $this->User_model->set_user_place($user_id, $place_id);
+
+        // Send callback
+        $this->load->helper("json_helper");
+        send_json_message("too lazy to implement securely", TRUE);
     }
 
 }

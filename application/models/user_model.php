@@ -193,6 +193,62 @@ class User_model extends CI_Model {
         }
     }
 
+    /** Returns all user classes */
+    public function get_user_classes() {
+        return array(
+            array(
+                "display_name" => "User",
+                "system_name" => "user"
+            ),
+            array(
+                "display_name" => "Worker",
+                "system_name" => "worker"
+            ),
+            array(
+                "display_name" => "Manager",
+                "system_name" => "manager"
+            )
+        );
+    }
+
+    /** Returns all users. */
+    public function get_all_users($role_filter = null) {
+        $this->db->select("*")->from("USER");
+
+        if (isset($role_filter)) {
+            $this->db->where("role = ", $role_filter);
+        }
+
+        return $this->db->get()->result_array();
+    }
+
+    /** Save user class to database. Update. */
+    public function set_user_class($user_id = null, $class = null) {
+        if (!isset($user_id) || !isset($class)) {
+            return;
+        }
+
+        // Yes, this query is not safe.
+        $this->db->where("user_id =" . $user_id)
+                ->update("USER", array(
+                    "role" => $class
+        ));
+    }
+
+    /** Save worker's place to database. Update. */
+    public function set_user_place($worker_id = null, $place_id = null) {
+        if (!isset($worker_id) || !isset($place_id)) {
+            return;
+        }
+
+        // Yes, this query is not safe 2.
+        $this->db->where("user_id =" . $worker_id)
+                ->where("role = \"worker\"")
+                ->update("USER", array(
+                    "place_id" => $place_id
+        ));
+    }
+
 }
 
 ?>
