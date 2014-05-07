@@ -114,7 +114,7 @@ class User extends CI_Controller {
         }
 
         // View self or another user
-        if (!isset($username)) {
+        if (isset($username)) {
             $username = $this->session->userdata('user_data');
             $username = $username['username'];
             $name = $this->session->userdata('user_data');
@@ -165,6 +165,9 @@ class User extends CI_Controller {
         } else {
             $role = $this->uri->segment(3);
             $this->User_model->set_user($role);
+            echo '<script>alert("You Have Successfully registrated. Please log in");</script>';
+            redirect('http://localhost/PSA/site/user');
+
         }
     }
 
@@ -196,6 +199,8 @@ class User extends CI_Controller {
         } else {
             // $id = $this->uri->segment(3);
             $this->User_model->update_user($id);
+            echo '<script>alert("You Have Successfully edited user!");</script>';
+            redirect('http://localhost/PSA/site/');
         }
     }
 
@@ -209,6 +214,8 @@ class User extends CI_Controller {
 
     public function delete_user($user_id = '') {
         $this->User_model->delete_user($user_id);
+        echo '<script>alert("You Have Successfully deleted user");</script>';
+        redirect('http://localhost/PSA/site/user/manage_users');
     }
 
     private function redirect_after_login() {

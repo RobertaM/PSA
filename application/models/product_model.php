@@ -66,7 +66,7 @@ class Product_model extends CI_Model {
                 );
          $this->db->insert("ITEMS", $item);
 
-}
+    }
 
 }
 

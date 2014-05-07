@@ -35,14 +35,20 @@ class Restaurant extends CI_Controller {
         } else {
             if ($id === FALSE) {
                 $this->Restaurant_model->set_restaurant();
+                echo '<script>alert("You Have Successfully add new restaurant!");</script>';
+                redirect('http://localhost/PSA/site/restaurant/addRestaurant');
             } else {
                 $this->Restaurant_model->update_restaurant($id);
+                echo '<script>alert("You Have Successfully edit restaurant!");</script>';
+                redirect('http://localhost/PSA/site/restaurant/manageRestaurants');
             }
         }
     }
 
     public function deleteRestaurant($place_id = '') {
         $this->Restaurant_model->delete_restaurant($place_id);
+        echo '<script>alert("You Have Successfully deleted restaurant");</script>';
+        redirect('http://localhost/PSA/site/restaurant/manageRestaurants');
     }
 
     public function manageRestaurants() {

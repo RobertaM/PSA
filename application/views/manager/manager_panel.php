@@ -5,8 +5,16 @@
         array(
             "title" => "Edit information",
             array(
-                "title" => "Administrate users",
+                "title" => "Administrate users roles",
                 "url" => "user/administrate"
+            ),
+            array(
+                "title" => "Edit users information",
+                "url" => "user/manage_users"
+            ),
+            array(
+                "title" => "Add restaurants",
+                "url" => "restaurant/addRestaurant"
             ),
             array(
                 "title" => "Manage restaurants",

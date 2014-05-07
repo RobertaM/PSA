@@ -95,7 +95,7 @@
                         } else {
                             array_push($right_buttons, array(
                                 "title" => "Register",
-                                "link" => "user/register"
+                                "link" => "user/register/user"
                             ));
                             array_push($right_buttons, array(
                                 "title" => "Log in",

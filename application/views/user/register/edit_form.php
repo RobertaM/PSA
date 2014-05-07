@@ -1,5 +1,4 @@
 <?php echo form_open('user/edit_user/'.$id);
-var_dump($user);
 ?>
 	
 	<h5>Name</h5>
