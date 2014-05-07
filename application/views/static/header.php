@@ -90,7 +90,7 @@
                             ));
                             array_push($right_buttons, array(
                                 "title" => "View profile",
-                                "link" => 'user/view/' . $this->User_model->get_username()
+                                "link" => 'user/view_profile/' . $this->User_model->get_username()
                             ));
                         } else {
                             array_push($right_buttons, array(
