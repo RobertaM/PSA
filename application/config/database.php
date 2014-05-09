@@ -48,10 +48,10 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = 'sql2.freemysqlhosting.net';
-$db['default']['username'] = 'sql237845';
-$db['default']['password'] = 'bN2*jK5!';
-$db['default']['database'] = 'sql237845';
+$db['default']['hostname'] = 'db4free.net:3306';
+$db['default']['username'] = 'psadb';
+$db['default']['password'] = 'sipmuk';
+$db['default']['database'] = 'psadb';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;
@@ -59,7 +59,7 @@ $db['default']['db_debug'] = TRUE;
 $db['default']['cache_on'] = FALSE;
 $db['default']['cachedir'] = '';
 $db['default']['char_set'] = 'utf8';
-$db['default']['dbcollat'] = 'utf8_general_ci';
+$db['default']['dbcollat'] = 'utf8_lithuanian_ci';
 $db['default']['swap_pre'] = '';
 $db['default']['autoinit'] = TRUE;
 $db['default']['stricton'] = FALSE;
