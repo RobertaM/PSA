@@ -50,7 +50,7 @@ $active_record = TRUE;
 
 $db['default']['hostname'] = 'db4free.net:3306';
 $db['default']['username'] = 'psadb';
-$db['default']['password'] = 'sipmuk';
+$db['default']['password'] = 'pZD5syFMC28rTrTQb6b4Sb4S';
 $db['default']['database'] = 'psadb';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
