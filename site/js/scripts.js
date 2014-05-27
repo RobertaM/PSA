@@ -30,7 +30,7 @@ function addToCart(string) {
     send(baseUrl('cart/add/' + string), function(jsonResult) {
         console.log(jsonResult);
     });
-}
+    }
 
 function submitOrders() {
     // Send request

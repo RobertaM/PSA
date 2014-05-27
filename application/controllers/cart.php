@@ -21,7 +21,7 @@ class Cart extends CI_Controller {
         if (!(isset($item_id) && isset($place["id"]))) {
             $this->send_json_result(
                     'Error: You son of a ...'
-            );
+            ); 
             return;
         }
 
@@ -80,6 +80,7 @@ class Cart extends CI_Controller {
 
         // Return json result
         $this->send_json_result("Success. Item inserted sucessfully", true);
+    
     }
 
     /**

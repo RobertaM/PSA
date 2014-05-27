@@ -96,12 +96,18 @@ class User extends CI_Controller {
         }
 
         $this->load->view('static/header', Array('title' => 'User ' . $username));
-
+        if ($this->session->userdata('user_data[role_for_preview]' == 'manager')){
+         $this->load->view('manager/panel', Array(
+            'user' => Array(
+                'nickname' => $username
+            )
+        ));   
+        } else {
         $this->load->view('user/view/view_one', Array(
             'user' => Array(
                 'nickname' => $username
             )
-        ));
+        )); }
         $this->load->view('static/footer');
     }
 

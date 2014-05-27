@@ -71,6 +71,31 @@ class Orders extends CI_Controller {
 //            // Redirect
 //            redirect(base_url("products/select/"), 'refresh');
     }
+    public function get_user_orders_history() {
+        
+        $this->load->model("User_model");
+        $user_id=$this->User_model->get_id();
+        // Get data from database
+        $products = $this->Order_model->get_user_orders($user_id);
+
+        // Check if products are not returned
+        if ($products === FALSE) {
+            $message = "No Orders awailable.";
+
+            $this->load->view("static/header", Array("title" => $message));
+            $this->load->view("static/show_message", Array("message" => $message));
+            $this->load->view("static/footer");
+            return;
+        }
+
+        // Load headers and form itself
+        $this->load->view("static/header", Array(
+            "title" => "Orders"));
+
+        $this->load->view("orders/list_orders", Array(
+            'products' => $products));
+        $this->load->view("static/footer");
+    }
 
     public function edit_orders() {
 
@@ -91,7 +116,7 @@ class Orders extends CI_Controller {
         $this->load->view("static/header", Array(
             "title" => "Orders"));
 
-        $this->load->view("orders/list_orders", Array(
+        $this->load->view("orders/edit_orders", Array(
             'products' => $products));
         $this->load->view("static/footer");
 
@@ -124,7 +149,8 @@ class Orders extends CI_Controller {
                 "detailed_message" => "Contact your manager."
             ));
             $this->load->view('static/footer');
-            exit();
+//            exit(); KAŽKAS PADEJO EXIT, TADA NIEKO NEBERA KRAUNAMA!!!
+            
         } else {
             $restaurant = $restaurant[0];
         }
@@ -168,7 +194,7 @@ class Orders extends CI_Controller {
         if ($success) {
             send_json_message("Success!", TRUE);
         } else {
-            send_json_message("Error: Something went wrong!");
+            send_json_message("Error: Something went wrong!",FALSE);
         }
     }
 
