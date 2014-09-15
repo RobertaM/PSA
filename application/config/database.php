@@ -48,10 +48,10 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = 'db4free.net:3306';
-$db['default']['username'] = 'psadb';
-$db['default']['password'] = 'pZD5syFMC28rTrTQb6b4Sb4S';
-$db['default']['database'] = 'psadb';
+$db['default']['hostname'] = 'localhost:3306';
+$db['default']['username'] = 'psa_server';
+$db['default']['password'] = 'Mj47dGSMY4xSNWT9';
+$db['default']['database'] = 'psa';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;
