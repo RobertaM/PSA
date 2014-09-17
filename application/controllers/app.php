@@ -27,6 +27,11 @@ class app extends CI_Controller {
                 return $this->get_products($data["shop_id"]);
             case "get_restaurants":
                 return $this->get_resaturants();
+            case "get_product_options":
+                if (!isset($data["item_id"])) {
+                    return null;
+                }
+                return $this->get_product_options($data["item_id"]);
         }
         return null;
     }
@@ -54,6 +59,11 @@ class app extends CI_Controller {
     private function get_resaturants() {
         $this->load->model("Restaurant_model");
         return $this->Restaurant_model->get_restaurant();
+    }
+
+    private function get_product_options($product_id) {
+        $this->load->model("Product_model");
+        return $this->Product_model->get_product_options($product_id);
     }
 
 }

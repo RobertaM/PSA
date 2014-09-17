@@ -51,8 +51,8 @@ class Product_model extends CI_Model {
             return NULL;
         }
 
-        return $this->db->select("ITEM_OPTIONS.*")
-                        ->from("ITEMS")
+        return $this->db->select("ITEM_OPTIONS.option_id, ITEM_OPTIONS.option_name, ITEM_OPTIONS.price")
+                        ->from("ITEM_OPTIONS")
                         ->where("ITEM_OPTIONS.item_id", $product_id)
                         ->get()->result_array();
     }
