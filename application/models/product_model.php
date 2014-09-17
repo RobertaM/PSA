@@ -21,7 +21,7 @@ class Product_model extends CI_Model {
         }
 
         // Select all data
-        $this->db->select("ITEMS.*, PLACES.place_id, CATEGORIES.*,ITEM_OPTIONS.*");
+        $this->db->select("ITEMS.item_id, ITEMS.cat_id, ITEMS.item_name, PLACES.place_id, CATEGORIES.*,ITEM_OPTIONS.*");
         $this->db->from("PLACES");
         $this->db->join("PLACE_ITEMS", "PLACE_ITEMS.place_id = PLACES.place_id", "left");
         $this->db->join("ITEMS", "ITEMS.item_id = PLACE_ITEMS.item_id", "left");
@@ -32,6 +32,29 @@ class Product_model extends CI_Model {
         $response = $this->db->get()->result_array();
 
         return $response;
+    }
+
+    public function get_product_descriptions($place_id = NULL) {
+        if ($place_id === NULL) {
+            return NULL;
+        }
+
+        return $this->db->select("ITEMS.item_id, ITEMS.cat_id, ITEMS.item_name")
+                        ->from("ITEMS")
+                        ->join("PLACE_ITEMS", "PLACE_ITEMS.item_id = ITEMS.item_id", "left")
+                        ->where("PLACE_ITEMS.place_id", $place_id)
+                        ->get()->result_array();
+    }
+
+    public function get_product_options($product_id = NULL) {
+        if (!isset($product_id)) {
+            return NULL;
+        }
+
+        return $this->db->select("ITEM_OPTIONS.*")
+                        ->from("ITEMS")
+                        ->where("ITEM_OPTIONS.item_id", $product_id)
+                        ->get()->result_array();
     }
 
     public function get_categories() {
